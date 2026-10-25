@@ -1083,31 +1083,91 @@
     </section>
 
     <!-- ==========================================
-         3.5 演者別・担当キャスト一覧 (Actor Cross-Index)
+         3.5 演者別・担当キャスト一覧 (Actor Cross-Index) ★表示名数切替(9名等)・ページネーション・検索・スクロール枠対応
          ========================================== -->
     <section id="sec-actors" class="page-section relative overflow-hidden py-16 sm:py-24 border-b border-[#b8a378]/20 bg-[#09080c]/70">
       <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
-        <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div class="mb-6 flex flex-wrap items-end justify-between gap-4">
           <div>
             <span class="font-display text-xs tracking-[0.3em] text-[#b8a378] uppercase">PERFORMER INDEX</span>
-            <h2 class="font-serif-jp text-2xl sm:text-3xl font-bold text-[#ebe6dc] mt-1">
-              演者別・担当キャスト一覧
+            <h2 class="font-serif-jp text-2xl sm:text-3xl font-bold text-[#ebe6dc] mt-1 flex flex-wrap items-center gap-3">
+              <span>演者別・担当キャスト一覧</span>
+              <span id="actorsTotalBadge" class="px-2.5 py-0.5 rounded-full text-xs font-sans font-semibold bg-[#181621] text-[#d6c6a5] border border-[#b8a378]/35">0名</span>
             </h2>
             <p class="text-xs sm:text-sm text-[#9e9689] mt-2">
-              登録されたキャストが演者名ごとに自動で一覧表示されます。キャスト名をクリックすると詳細が開きます。
+              登録されたキャストが演者名ごとに自動で一覧表示されます。1ページあたりの表示名数（9名・18名・30名・全件）の切り替えや検索が可能です。
             </p>
           </div>
         </div>
 
+        <!-- Actor Index Controls: Faction Filter + Page Size (9/18/30/All) + Search + Top Pagination -->
+        <div class="card-nocturne rounded-3xl p-4 sm:p-5 mb-5 space-y-3.5">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <!-- Faction Responsibility Filter -->
+            <div class="inline-flex flex-wrap items-center rounded-xl bg-[#09080c] p-1 border border-[#b8a378]/25 gap-1">
+              <button type="button" data-actor-faction-filter="ALL" class="actor-faction-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#b8a378] text-[#0b0a0e] transition">
+                すべて
+              </button>
+              <button type="button" data-actor-faction-filter="faction_a" class="actor-faction-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#e2a8b8] hover:bg-[#e2a8b8]/15 transition">
+                ✦ 魔法少女を担当
+              </button>
+              <button type="button" data-actor-faction-filter="faction_b" class="actor-faction-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#b86b77] hover:bg-[#b86b77]/15 transition">
+                ✦ 悪を担当
+              </button>
+              <button type="button" data-actor-faction-filter="faction_c" class="actor-faction-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#8da4b8] hover:bg-[#8da4b8]/15 transition">
+                ✦ 中立を担当
+              </button>
+            </div>
+
+            <!-- Page Size Selector (9名ずつ表示 default) & Search Box -->
+            <div class="flex flex-wrap items-center gap-2.5 flex-1 sm:flex-initial justify-end">
+              <div class="flex items-center gap-2">
+                <label for="actorPageSizeSelect" class="text-xs text-[#9e9689] whitespace-nowrap">表示名数:</label>
+                <select id="actorPageSizeSelect"
+                        aria-label="演者一覧の1ページあたり表示名数"
+                        class="px-3 py-2 rounded-xl bg-[#09080c] border border-[#b8a378]/30 text-xs sm:text-sm text-[#e6e0d4] focus:outline-none focus:border-[#d6c6a5]">
+                  <option value="9" selected>9名ずつ表示</option>
+                  <option value="6">6名ずつ表示</option>
+                  <option value="12">12名ずつ表示</option>
+                  <option value="18">18名ずつ表示</option>
+                  <option value="30">30名ずつ表示</option>
+                  <option value="999">全件表示</option>
+                </select>
+              </div>
+
+              <div class="relative min-w-[200px] sm:w-64">
+                <input id="actorTableSearchInput" type="text" placeholder="演者名・担当キャスト名で検索..."
+                       class="w-full pl-3.5 pr-8 py-2 rounded-xl bg-[#09080c] border border-[#b8a378]/30 text-xs sm:text-sm text-[#ebe6dc] placeholder-[#6e675b] focus:outline-none focus:border-[#d6c6a5]">
+                <button id="clearActorTableSearchBtn" type="button" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-[#9e9689] hover:text-[#ebe6dc]">
+                  ✕
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#b8a378]/15 text-xs text-[#9e9689]">
+            <div id="actorTableFilterStatus">演者一覧を表示中</div>
+            <div id="actorPaginationTop" class="flex flex-wrap items-center gap-1.5"></div>
+          </div>
+        </div>
+
         <div class="card-nocturne rounded-3xl overflow-hidden border border-[#b8a378]/30">
-          <div class="overflow-x-auto">
+          <!-- Scrollable Frame Header Bar -->
+          <div class="px-5 py-2.5 bg-[#09080c]/90 border-b border-[#b8a378]/20 flex flex-wrap items-center justify-between gap-2 text-[11px] text-[#9e9689]">
+            <span class="font-display tracking-wider text-[#d6c6a5] uppercase flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#b8a378]"></span>
+              Performer &amp; Cast Matrix
+            </span>
+            <span>↕ 枠内でスクロール・キャスト名クリックで詳細表示</span>
+          </div>
+          <div id="actorsScrollViewport" class="overflow-x-auto max-h-[600px] overflow-y-auto">
             <table class="w-full text-left border-collapse text-xs sm:text-sm">
-              <thead>
-                <tr class="bg-[#17141e] border-b border-[#b8a378]/30 text-[#d6c6a5] font-serif-jp">
-                  <th class="py-4 px-5 font-semibold">演者名</th>
-                  <th class="py-4 px-5 font-semibold text-[#e2a8b8]">✦ 魔法少女</th>
-                  <th class="py-4 px-5 font-semibold text-[#b86b77]">✦ 悪</th>
-                  <th class="py-4 px-5 font-semibold text-[#8da4b8]">✦ 中立</th>
+              <thead class="sticky top-0 z-10">
+                <tr class="bg-[#17141e] border-b border-[#b8a378]/30 text-[#d6c6a5] font-serif-jp shadow-sm">
+                  <th class="py-4 px-5 font-semibold whitespace-nowrap">演者名</th>
+                  <th class="py-4 px-5 font-semibold text-[#e2a8b8] whitespace-nowrap">✦ 魔法少女</th>
+                  <th class="py-4 px-5 font-semibold text-[#b86b77] whitespace-nowrap">✦ 悪</th>
+                  <th class="py-4 px-5 font-semibold text-[#8da4b8] whitespace-nowrap">✦ 中立</th>
                 </tr>
               </thead>
               <tbody id="actorCrossTableBody" class="divide-y divide-[#b8a378]/15">
@@ -1116,6 +1176,9 @@
             </table>
           </div>
         </div>
+
+        <!-- Bottom Pagination Bar -->
+        <div id="actorPaginationBottom" class="mt-6 flex flex-wrap items-center justify-center gap-2"></div>
       </div>
     </section>
 
@@ -2313,6 +2376,10 @@
       fontScale: "normal",
       currentPage: 1,
       pageSize: 9,
+      actorCurrentPage: 1,
+      actorPageSize: 9,
+      actorSearchQuery: "",
+      actorFactionFilter: "ALL",
       pageMode: "all",
       activeModalCastId: null,
       editingCastId: "NEW",
@@ -2694,6 +2761,8 @@
         "castPaginationTop",
         "castPaginationBottom",
         "actorCrossTableBody",
+        "actorPaginationTop",
+        "actorPaginationBottom",
         "reportsContainer",
         "repPaginationTop",
         "repPaginationBottom",
@@ -3616,13 +3685,105 @@
     }
 
     // ---------------------------------------------------------
-    // Render Actor Cross-Index Table
+    // Render Actor Cross-Index Table (Paginated, Searchable, Filterable)
     // ---------------------------------------------------------
+    function buildActorPaginationHtml(totalItems, totalPages) {
+      if (totalItems <= state.actorPageSize || totalPages <= 1) return "";
+      let html = `
+        <button type="button" data-actor-page="${Math.max(1, state.actorCurrentPage - 1)}"
+                ${state.actorCurrentPage === 1 ? "disabled" : ""}
+                class="actor-page-btn px-3 py-1.5 rounded-lg text-xs border border-[#b8a378]/30 bg-[#121017] text-[#d6c6a5] hover:bg-[#1e1b26] disabled:opacity-35 disabled:pointer-events-none transition">
+          ← 前へ
+        </button>
+      `;
+      for (let p = 1; p <= totalPages; p++) {
+        const active = p === state.actorCurrentPage;
+        html += `
+          <button type="button" data-actor-page="${p}"
+                  class="actor-page-btn w-8 h-8 rounded-lg text-xs font-bold border transition ${
+                    active
+                      ? "bg-[#b8a378] text-[#0b0a0e] border-[#d6c6a5] shadow"
+                      : "bg-[#121017] text-[#b0a898] border-[#b8a378]/25 hover:text-[#ebe6dc] hover:border-[#b8a378]/50"
+                  }">
+            ${p}
+          </button>
+        `;
+      }
+      html += `
+        <button type="button" data-actor-page="${Math.min(totalPages, state.actorCurrentPage + 1)}"
+                ${state.actorCurrentPage === totalPages ? "disabled" : ""}
+                class="actor-page-btn px-3 py-1.5 rounded-lg text-xs border border-[#b8a378]/30 bg-[#121017] text-[#d6c6a5] hover:bg-[#1e1b26] disabled:opacity-35 disabled:pointer-events-none transition">
+          次へ →
+        </button>
+      `;
+      return html;
+    }
+
+    function bindActorPaginationButtons(rootEl) {
+      if (!rootEl) return;
+      rootEl.querySelectorAll(".actor-page-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const targetPage = parseInt(btn.getAttribute("data-actor-page"), 10);
+          if (!isNaN(targetPage) && targetPage !== state.actorCurrentPage) {
+            state.actorCurrentPage = targetPage;
+            renderActorCrossTable();
+            const viewport = document.getElementById("actorsScrollViewport");
+            if (viewport) viewport.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        });
+      });
+    }
+
     function renderActorCrossTable() {
       const tbody = document.getElementById("actorCrossTableBody");
       if (!tbody) return;
 
+      const totalBadge = document.getElementById("actorsTotalBadge");
+      const statusEl = document.getElementById("actorTableFilterStatus");
+      const topPagEl = document.getElementById("actorPaginationTop");
+      const bottomPagEl = document.getElementById("actorPaginationBottom");
+      const pageSizeSelect = document.getElementById("actorPageSizeSelect");
+      if (pageSizeSelect && String(pageSizeSelect.value) !== String(state.actorPageSize)) {
+        pageSizeSelect.value = String(state.actorPageSize);
+      }
+
+      // Sync faction filter buttons
+      document.querySelectorAll(".actor-faction-filter-btn").forEach(btn => {
+        const fKey = btn.getAttribute("data-actor-faction-filter") || "ALL";
+        const active = fKey === state.actorFactionFilter;
+        if (active) {
+          btn.className = "actor-faction-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#b8a378] text-[#0b0a0e] transition";
+        } else if (fKey === "faction_a") {
+          btn.className = "actor-faction-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#e2a8b8] hover:bg-[#e2a8b8]/15 transition";
+        } else if (fKey === "faction_b") {
+          btn.className = "actor-faction-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#b86b77] hover:bg-[#b86b77]/15 transition";
+        } else if (fKey === "faction_c") {
+          btn.className = "actor-faction-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#8da4b8] hover:bg-[#8da4b8]/15 transition";
+        } else {
+          btn.className = "actor-faction-filter-btn px-3 py-1.5 rounded-lg text-xs font-medium text-[#b0a898] hover:text-[#ebe6dc] transition";
+        }
+      });
+
+      const actorMap = new Map();
+      state.casts.forEach(c => {
+        const actorName = (c.actor || "未設定").trim();
+        if (!actorMap.has(actorName)) {
+          actorMap.set(actorName, { faction_a: [], faction_b: [], faction_c: [] });
+        }
+        if (actorMap.get(actorName)[c.factionId]) {
+          actorMap.get(actorName)[c.factionId].push(c);
+        }
+      });
+
+      const allActors = Array.from(actorMap.entries());
+      if (totalBadge) {
+        totalBadge.textContent = `${allActors.length}名`;
+      }
+
       if (state.casts.length === 0) {
+        if (statusEl) statusEl.textContent = "現在登録されている演者はいません（0名）";
+        if (topPagEl) topPagEl.innerHTML = "";
+        if (bottomPagEl) bottomPagEl.innerHTML = "";
         tbody.innerHTML = `
           <tr>
             <td colspan="4" class="py-10 px-5 text-center text-xs sm:text-sm text-[#8a8275]">
@@ -3633,13 +3794,84 @@
         return;
       }
 
-      const actorMap = new Map();
-      state.casts.forEach(c => {
-        if (!actorMap.has(c.actor)) {
-          actorMap.set(c.actor, { faction_a: [], faction_b: [], faction_c: [] });
+      const q = (state.actorSearchQuery || "").trim().toLowerCase();
+      const filteredActors = allActors.filter(([actor, groups]) => {
+        if (state.actorFactionFilter === "faction_a" && groups.faction_a.length === 0) return false;
+        if (state.actorFactionFilter === "faction_b" && groups.faction_b.length === 0) return false;
+        if (state.actorFactionFilter === "faction_c" && groups.faction_c.length === 0) return false;
+        if (q) {
+          const allAssigned = [...groups.faction_a, ...groups.faction_b, ...groups.faction_c];
+          const matchActor = actor.toLowerCase().includes(q);
+          const matchCast = allAssigned.some(c =>
+            (c.name || "").toLowerCase().includes(q) ||
+            (c.fullName || "").toLowerCase().includes(q) ||
+            String(c.no || "").includes(q)
+          );
+          if (!matchActor && !matchCast) return false;
         }
-        actorMap.get(c.actor)[c.factionId].push(c);
+        return true;
       });
+
+      const totalItems = filteredActors.length;
+      const pageSize = Number(state.actorPageSize) || 9;
+      const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+      if (state.actorCurrentPage > totalPages) state.actorCurrentPage = totalPages;
+      if (state.actorCurrentPage < 1) state.actorCurrentPage = 1;
+
+      const startIdx = (state.actorCurrentPage - 1) * pageSize;
+      const pagedActors = filteredActors.slice(startIdx, startIdx + pageSize);
+
+      const filterLabelMap = {
+        ALL: "すべての演者",
+        faction_a: "魔法少女を担当する演者",
+        faction_b: "悪を担当する演者",
+        faction_c: "中立を担当する演者"
+      };
+      const filterLabel = filterLabelMap[state.actorFactionFilter] || "すべての演者";
+      const rangeText = totalItems > 0
+        ? `${startIdx + 1}〜${Math.min(totalItems, startIdx + pageSize)}名目を表示中（全${totalItems}名）`
+        : "0名";
+
+      if (statusEl) {
+        statusEl.textContent = `${filterLabel}：${rangeText}` + (q ? `｜検索: "${state.actorSearchQuery}"` : "");
+      }
+
+      const pagHtml = buildActorPaginationHtml(totalItems, totalPages);
+      if (topPagEl) {
+        topPagEl.innerHTML = pagHtml;
+        bindActorPaginationButtons(topPagEl);
+      }
+      if (bottomPagEl) {
+        bottomPagEl.innerHTML = pagHtml;
+        bindActorPaginationButtons(bottomPagEl);
+      }
+
+      if (filteredActors.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="4" class="py-10 px-5 text-center space-y-3">
+              <p class="font-serif-jp text-sm sm:text-base text-[#d6c6a5]">条件に一致する演者が見つかりませんでした。</p>
+              <button id="resetActorTableFilterBtn" type="button" class="px-4 py-2 rounded-xl bg-[#b8a378] text-[#0b0a0e] font-bold text-xs hover:brightness-110 transition">
+                フィルターを解除
+              </button>
+            </td>
+          </tr>
+        `;
+        const resetBtn = document.getElementById("resetActorTableFilterBtn");
+        if (resetBtn) {
+          resetBtn.addEventListener("click", () => {
+            state.actorFactionFilter = "ALL";
+            state.actorSearchQuery = "";
+            state.actorCurrentPage = 1;
+            const sInput = document.getElementById("actorTableSearchInput");
+            const cBtn = document.getElementById("clearActorTableSearchBtn");
+            if (sInput) sInput.value = "";
+            if (cBtn) cBtn.classList.add("hidden");
+            renderActorCrossTable();
+          });
+        }
+        return;
+      }
 
       const renderCell = (list, color) => {
         if (!list || list.length === 0) return `<span class="text-[#524c42]">—</span>`;
@@ -3652,7 +3884,7 @@
         `).join("") + `</div>`;
       };
 
-      tbody.innerHTML = Array.from(actorMap.entries()).map(([actor, groups]) => {
+      tbody.innerHTML = pagedActors.map(([actor, groups]) => {
         const actorXUrl = [...groups.faction_a, ...groups.faction_b, ...groups.faction_c].map(c => c.xUrl).find(Boolean) || "";
         return `
         <tr class="hover:bg-[#14121a] transition">
@@ -5472,6 +5704,46 @@
         state.currentPage = 1;
         renderCasts();
       });
+
+      // Actor Cross-Index Table Controls (9-per-page selector, faction filter, search)
+      const actorPageSizeSelect = document.getElementById("actorPageSizeSelect");
+      if (actorPageSizeSelect) {
+        actorPageSizeSelect.addEventListener("change", (e) => {
+          state.actorPageSize = parseInt(e.target.value, 10) || 9;
+          state.actorCurrentPage = 1;
+          renderActorCrossTable();
+        });
+      }
+
+      document.querySelectorAll(".actor-faction-filter-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.actorFactionFilter = btn.getAttribute("data-actor-faction-filter") || "ALL";
+          state.actorCurrentPage = 1;
+          renderActorCrossTable();
+        });
+      });
+
+      const actorTableSearchInput = document.getElementById("actorTableSearchInput");
+      const clearActorTableSearchBtn = document.getElementById("clearActorTableSearchBtn");
+      if (actorTableSearchInput) {
+        actorTableSearchInput.addEventListener("input", () => {
+          state.actorSearchQuery = actorTableSearchInput.value || "";
+          state.actorCurrentPage = 1;
+          if (clearActorTableSearchBtn) {
+            clearActorTableSearchBtn.classList.toggle("hidden", !state.actorSearchQuery);
+          }
+          renderActorCrossTable();
+        });
+      }
+      if (clearActorTableSearchBtn) {
+        clearActorTableSearchBtn.addEventListener("click", () => {
+          state.actorSearchQuery = "";
+          state.actorCurrentPage = 1;
+          if (actorTableSearchInput) actorTableSearchInput.value = "";
+          clearActorTableSearchBtn.classList.add("hidden");
+          renderActorCrossTable();
+        });
+      }
 
       const searchInput = document.getElementById("castSearchInput");
       const clearSearchBtn = document.getElementById("clearCastSearchBtn");
