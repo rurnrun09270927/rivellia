@@ -161,6 +161,120 @@
       animation: heroLogoFloat 7s ease-in-out infinite;
     }
 
+    /* =========================================================================
+       LUXURY HOTEL LOUNGE & CLASSICAL SALON ARCHITECTURAL MOLDINGS
+       ========================================================================= */
+    .salon-double-frame {
+      position: relative;
+      background: linear-gradient(170deg, rgba(16, 14, 21, 0.88) 0%, rgba(8, 7, 11, 0.94) 100%);
+      border: 1px solid rgba(184, 163, 120, 0.42);
+      box-shadow:
+        0 30px 80px -20px rgba(0, 0, 0, 0.96),
+        inset 0 0 0 6px rgba(8, 7, 11, 0.92),
+        inset 0 0 0 7px rgba(184, 163, 120, 0.22);
+    }
+
+    /* Fine architectural corner ornaments */
+    .salon-corner-tl, .salon-corner-tr, .salon-corner-bl, .salon-corner-br {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .salon-corner-tl {
+      top: 10px; left: 10px;
+      border-top: 1.5px solid #d6c6a5;
+      border-left: 1.5px solid #d6c6a5;
+    }
+    .salon-corner-tr {
+      top: 10px; right: 10px;
+      border-top: 1.5px solid #d6c6a5;
+      border-right: 1.5px solid #d6c6a5;
+    }
+    .salon-corner-bl {
+      bottom: 10px; left: 10px;
+      border-bottom: 1.5px solid #d6c6a5;
+      border-left: 1.5px solid #d6c6a5;
+    }
+    .salon-corner-br {
+      bottom: 10px; right: 10px;
+      border-bottom: 1.5px solid #d6c6a5;
+      border-right: 1.5px solid #d6c6a5;
+    }
+
+    /* Vertical Japanese Tategaki (縦書き) Editorial Typography */
+    .tategaki-poem {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      font-family: 'Shippori Mincho', serif;
+      letter-spacing: 0.34em;
+      line-height: 2.1;
+      color: rgba(214, 198, 165, 0.65);
+      user-select: none;
+    }
+
+    /* Hotel Lounge Navigation Item with Animated Gold Hairline */
+    .salon-nav-item {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.45rem 0.78rem;
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+    .salon-nav-item::after {
+      content: "";
+      position: absolute;
+      bottom: 2px;
+      left: 18%;
+      right: 18%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #d6c6a5, transparent);
+      transform: scaleX(0);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .salon-nav-item:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Museum / Gallery Brass Picture Frame for Official Posters */
+    .luxury-poster-frame {
+      position: relative;
+      padding: 10px;
+      background: linear-gradient(145deg, #17141d 0%, #09080c 100%);
+      border: 1px solid rgba(184, 163, 120, 0.48);
+      box-shadow:
+        0 20px 50px -12px rgba(0, 0, 0, 0.95),
+        inset 0 0 0 1px rgba(214, 198, 165, 0.14),
+        inset 0 0 18px rgba(0, 0, 0, 0.85);
+      transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+    }
+    .luxury-poster-frame:hover {
+      border-color: rgba(214, 198, 165, 0.82);
+      transform: translateY(-3px);
+      box-shadow:
+        0 26px 60px -12px rgba(0, 0, 0, 0.98),
+        0 0 28px -6px rgba(184, 163, 120, 0.22),
+        inset 0 0 0 1px rgba(214, 198, 165, 0.28);
+    }
+
+    /* Bespoke Lounge Door Plaque Card */
+    .salon-door-plaque {
+      position: relative;
+      background: linear-gradient(180deg, rgba(20, 17, 26, 0.92) 0%, rgba(10, 9, 14, 0.96) 100%);
+      border: 1px solid rgba(184, 163, 120, 0.35);
+      box-shadow:
+        0 18px 40px -12px rgba(0, 0, 0, 0.92),
+        inset 0 0 0 4px rgba(10, 9, 14, 0.95),
+        inset 0 0 0 5px rgba(184, 163, 120, 0.15);
+      transition: all 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .salon-door-plaque:hover {
+      transform: translateY(-4px);
+    }
+
     /* Scroll-Reveal Theatrical Entrance */
     .reveal-on-scroll {
       opacity: 0;
@@ -309,17 +423,27 @@
   <!-- Cursor Lantern Spotlight Glow -->
   <div id="cursorNocturneGlow" class="hidden md:block" aria-hidden="true"></div>
 
-  <!-- Top Status Bar (Minimal & Airy) -->
-  <div class="relative z-30 bg-[#0e0c12]/90 backdrop-blur-sm border-b border-[#b8a378]/20 text-xs text-[#b0a898] py-2 px-4 sm:px-6">
+  <!-- Top Salon Concierge Bar (Hotel Lounge Brass Crest Style) -->
+  <div class="relative z-30 bg-[#070609]/95 backdrop-blur-md border-b border-[#b8a378]/25 text-[11px] text-[#b0a898] py-2 px-4 sm:px-6">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center gap-2">
-        <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#b8a378]"></span>
-        <span class="font-serif-jp tracking-wider">魔法少女と悪のノクターンサロン Rivellia（リベリア）</span>
+      <div class="flex items-center gap-3">
+        <span class="font-display tracking-[0.28em] text-[#b8a378] uppercase hidden sm:inline">NOCTURNE SALON RIVELLIA</span>
+        <span class="text-[#b8a378]/40 hidden sm:inline">|</span>
+        <span class="font-serif-jp tracking-widest text-[#dfd9cc]">魔法少女と悪のノクターンサロン Rivellia（リベリア）</span>
+        <span class="hidden md:inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#14121b] border border-[#b8a378]/30 text-[10px] text-[#d6c6a5] tracking-wider">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#b8a378] animate-pulse"></span>
+          <span>PRIVATE RP LOUNGE IN VRCHAT</span>
+        </span>
       </div>
-      <div class="flex items-center gap-2.5">
-        <button id="openAdminLoginTopQuickBtn" type="button" class="text-[11px] text-[#8a8275] hover:text-[#d6c6a5] transition flex items-center gap-1">
+      <div class="flex items-center gap-3">
+        <a href="https://x.com/search?q=%23%E3%83%AA%E3%83%99%E3%83%AA%E3%82%A2_VRC" target="_blank" rel="noopener noreferrer"
+           class="hidden sm:inline-flex items-center gap-1 text-[11px] text-[#b8a378] hover:text-[#ede5d5] transition tracking-wider">
+          <span>OFFICIAL TAG : #リベリア_VRC ↗</span>
+        </a>
+        <span class="text-[#b8a378]/30 hidden sm:inline">|</span>
+        <button id="openAdminLoginTopQuickBtn" type="button" class="text-[11px] text-[#8a8275] hover:text-[#d6c6a5] transition flex items-center gap-1 tracking-wider">
           <span>🔒</span>
-          <span id="topAdminStatusText">管理者ログイン</span>
+          <span id="topAdminStatusText">CONCIERGE / 管理者</span>
         </button>
         <span id="adminModeStatusBadge" class="hidden admin-only-control inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-sm bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 text-[11px]">
           <span>🔓 編集モード中</span>
@@ -334,285 +458,375 @@
     </div>
   </div>
 
-  <!-- Sticky Navigation Header (Clean, Single-Line, Uncluttered) -->
-  <header class="sticky top-0 z-40 backdrop-blur-md bg-[#09080c]/95 border-b border-[#b8a378]/25">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
-      <!-- Brand Logo -->
-      <button id="brandHomeBtn" type="button" class="flex items-center gap-3 text-left group focus:outline-none shrink-0">
-        <img id="headerLogoImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Rivellia Logo" class="w-11 h-11 rounded-xl object-cover border border-[#b8a378]/50 shadow-inner group-hover:border-[#d6c6a5] transition">
+  <!-- Sticky Luxury Lounge Navigation Header (Double-Hairline Brass & Stacked Editorial Typography) -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-[#08070b]/95 border-b border-[#b8a378]/35 shadow-[0_10px_30px_rgba(0,0,0,0.85)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-22 flex items-center justify-between gap-4 py-2.5">
+      <!-- Brand Crest & Title -->
+      <button id="brandHomeBtn" type="button" class="flex items-center gap-3.5 text-left group focus:outline-none shrink-0">
+        <div class="relative p-0.5 bg-gradient-to-b from-[#d6c6a5]/60 via-[#b8a378]/30 to-[#8c7853]/60">
+          <img id="headerLogoImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Rivellia Logo" class="w-11 h-11 sm:w-12 sm:h-12 object-cover bg-[#08070a] block">
+        </div>
         <div>
-          <span class="block font-display text-lg sm:text-xl tracking-[0.2em] text-gold-gradient font-semibold">RIVELLIA</span>
-          <span class="block text-[11px] text-[#9e9689] tracking-widest font-serif-jp">魔法少女と悪のノクターンサロン リベリア</span>
+          <div class="flex items-center gap-2">
+            <span class="font-display text-xl sm:text-2xl tracking-[0.26em] text-gold-gradient font-semibold leading-none">RIVELLIA</span>
+            <span class="hidden xl:inline-block text-[9px] font-display tracking-[0.25em] text-[#b8a378] border border-[#b8a378]/35 px-1.5 py-0.5">SALON</span>
+          </div>
+          <span class="block text-[10px] sm:text-[11px] text-[#a89f91] tracking-[0.18em] font-serif-jp mt-1">魔法少女と悪のノクターンサロン リベリア</span>
         </div>
       </button>
 
-      <!-- Desktop Navigation (Spacious & Single-Line) -->
-      <nav class="hidden lg:flex items-center gap-2" aria-label="メインナビゲーション">
-        <button type="button" data-page-route="home" data-nav-target="sec-home" class="page-route-btn nav-scroll-btn px-3.5 py-2 rounded-xl text-sm font-medium text-[#dfd9cc] hover:text-[#d6c6a5] hover:bg-[#b8a378]/10 transition">
-          トップ
+      <!-- Desktop Luxury Lounge Navigation (Stacked English Sub-label + Japanese Mincho) -->
+      <nav class="hidden lg:flex items-center gap-1" aria-label="メインナビゲーション">
+        <button type="button" data-page-route="home" data-nav-target="sec-home" class="page-route-btn nav-scroll-btn salon-nav-item text-[#dfd9cc] hover:text-[#ede5d5]">
+          <span class="font-display text-[9px] tracking-[0.24em] text-[#b8a378] uppercase leading-none">ENTRANCE</span>
+          <span class="font-serif-jp text-xs font-medium tracking-widest mt-1">トップ</span>
         </button>
-        <button type="button" data-page-route="about" data-nav-target="sec-about" class="page-route-btn nav-scroll-btn px-3.5 py-2 rounded-xl text-sm font-medium text-[#dfd9cc] hover:text-[#d6c6a5] hover:bg-[#b8a378]/10 transition">
-          世界観
+        <button type="button" data-page-route="about" data-nav-target="sec-about" class="page-route-btn nav-scroll-btn salon-nav-item text-[#dfd9cc] hover:text-[#ede5d5]">
+          <span class="font-display text-[9px] tracking-[0.24em] text-[#b8a378] uppercase leading-none">CONCEPT</span>
+          <span class="font-serif-jp text-xs font-medium tracking-widest mt-1">世界観・案内</span>
         </button>
-        <div class="h-4 w-[1px] bg-[#b8a378]/20 mx-1"></div>
-        <button type="button" data-page-route="faction_a" class="page-route-btn px-3.5 py-2 rounded-xl text-sm font-semibold text-[#e2a8b8] bg-[#e2a8b8]/10 border border-[#e2a8b8]/35 hover:bg-[#e2a8b8]/20 transition">
-          魔法少女
+
+        <div class="h-7 w-[1px] bg-gradient-to-b from-transparent via-[#b8a378]/35 to-transparent mx-1.5"></div>
+
+        <!-- Three Faction Salon Doors in Header -->
+        <button type="button" data-page-route="faction_a" class="page-route-btn salon-nav-item bg-[#e2a8b8]/[0.07] hover:bg-[#e2a8b8]/[0.15] border border-[#e2a8b8]/30 mx-0.5">
+          <span class="font-display text-[8px] tracking-[0.22em] text-[#e2a8b8]/85 uppercase leading-none">CHAMBER I</span>
+          <span class="font-serif-jp text-xs font-semibold text-[#e2a8b8] tracking-widest mt-1">魔法少女</span>
         </button>
-        <button type="button" data-page-route="faction_b" class="page-route-btn px-3.5 py-2 rounded-xl text-sm font-semibold text-[#b86b77] bg-[#b86b77]/10 border border-[#b86b77]/35 hover:bg-[#b86b77]/20 transition">
-          悪
+        <button type="button" data-page-route="faction_b" class="page-route-btn salon-nav-item bg-[#b86b77]/[0.07] hover:bg-[#b86b77]/[0.15] border border-[#b86b77]/30 mx-0.5">
+          <span class="font-display text-[8px] tracking-[0.22em] text-[#b86b77]/85 uppercase leading-none">CHAMBER II</span>
+          <span class="font-serif-jp text-xs font-semibold text-[#b86b77] tracking-widest mt-1">悪</span>
         </button>
-        <button type="button" data-page-route="faction_c" class="page-route-btn px-3.5 py-2 rounded-xl text-sm font-semibold text-[#8da4b8] bg-[#8da4b8]/10 border border-[#8da4b8]/35 hover:bg-[#8da4b8]/20 transition">
-          中立
+        <button type="button" data-page-route="faction_c" class="page-route-btn salon-nav-item bg-[#8da4b8]/[0.07] hover:bg-[#8da4b8]/[0.15] border border-[#8da4b8]/30 mx-0.5">
+          <span class="font-display text-[8px] tracking-[0.22em] text-[#8da4b8]/85 uppercase leading-none">CHAMBER III</span>
+          <span class="font-serif-jp text-xs font-semibold text-[#8da4b8] tracking-widest mt-1">中立</span>
         </button>
-        <button type="button" data-page-route="all_casts" data-nav-target="sec-cast" class="page-route-btn nav-scroll-btn px-3.5 py-2 rounded-xl text-sm font-semibold text-[#d6c6a5] bg-[#b8a378]/15 border border-[#b8a378]/35 hover:bg-[#b8a378]/25 transition">
-          全キャスト
+
+        <button type="button" data-page-route="all_casts" data-nav-target="sec-cast" class="page-route-btn nav-scroll-btn salon-nav-item bg-[#b8a378]/[0.12] hover:bg-[#b8a378]/[0.22] border border-[#b8a378]/40 mx-0.5">
+          <span class="font-display text-[8px] tracking-[0.22em] text-[#d6c6a5] uppercase leading-none">DIRECTORY</span>
+          <span class="font-serif-jp text-xs font-semibold text-[#ede5d5] tracking-widest mt-1">全キャスト名鑑</span>
         </button>
-        <div class="h-4 w-[1px] bg-[#b8a378]/20 mx-1"></div>
-        <button type="button" data-page-route="actors" class="page-route-btn px-3 py-2 rounded-xl text-sm font-medium text-[#dfd9cc] hover:text-[#d6c6a5] hover:bg-[#b8a378]/10 transition">
-          演者一覧
+
+        <div class="h-7 w-[1px] bg-gradient-to-b from-transparent via-[#b8a378]/35 to-transparent mx-1.5"></div>
+
+        <button type="button" data-page-route="actors" class="page-route-btn salon-nav-item text-[#dfd9cc] hover:text-[#ede5d5]">
+          <span class="font-display text-[9px] tracking-[0.24em] text-[#b8a378] uppercase leading-none">PERFORMERS</span>
+          <span class="font-serif-jp text-xs font-medium tracking-widest mt-1">演者一覧</span>
         </button>
-        <button type="button" data-page-route="archive" data-nav-target="sec-archive" class="page-route-btn nav-scroll-btn px-3 py-2 rounded-xl text-sm font-medium text-[#dfd9cc] hover:text-[#d6c6a5] hover:bg-[#b8a378]/10 transition">
-          営業記録
+        <button type="button" data-page-route="archive" data-nav-target="sec-archive" class="page-route-btn nav-scroll-btn salon-nav-item text-[#dfd9cc] hover:text-[#ede5d5]">
+          <span class="font-display text-[9px] tracking-[0.24em] text-[#b8a378] uppercase leading-none">CHRONICLE</span>
+          <span class="font-serif-jp text-xs font-medium tracking-widest mt-1">営業記録</span>
         </button>
-        <button type="button" data-page-route="x_feed" data-nav-target="sec-x-feed" class="page-route-btn nav-scroll-btn px-3 py-2 rounded-xl text-sm font-medium text-[#b8a378] hover:text-[#d6c6a5] hover:bg-[#b8a378]/10 transition">
-          #リベリア_VRC
+        <button type="button" data-page-route="x_feed" data-nav-target="sec-x-feed" class="page-route-btn nav-scroll-btn salon-nav-item text-[#d6c6a5] hover:text-[#ede5d5]">
+          <span class="font-display text-[9px] tracking-[0.24em] text-[#b8a378] uppercase leading-none">LOUNGE LOG</span>
+          <span class="font-serif-jp text-xs font-semibold tracking-wider mt-1">#リベリア_VRC</span>
         </button>
       </nav>
 
       <!-- Mobile Menu Toggle -->
       <div class="flex items-center gap-2 lg:hidden">
-        <button type="button" data-page-route="all_casts" data-nav-target="sec-cast" class="page-route-btn nav-scroll-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#b8a378]/20 text-[#d6c6a5] border border-[#b8a378]/45">
-          キャスト一覧
+        <button type="button" data-page-route="all_casts" data-nav-target="sec-cast" class="page-route-btn nav-scroll-btn px-3.5 py-2 rounded-xl text-xs font-semibold bg-[#b8a378]/20 text-[#d6c6a5] border border-[#b8a378]/45 font-serif-jp tracking-wider">
+          キャスト名鑑
         </button>
-        <button id="mobileMenuBtn" type="button" aria-label="メニューを開く" class="px-3 py-2 rounded-xl border border-[#b8a378]/30 text-[#d6c6a5] hover:bg-[#b8a378]/10">
-          <span class="text-xs font-bold">MENU</span>
+        <button id="mobileMenuBtn" type="button" aria-label="メニューを開く" class="px-3 py-2 rounded-xl border border-[#b8a378]/35 text-[#d6c6a5] hover:bg-[#b8a378]/10 font-display tracking-widest text-xs">
+          MENU
         </button>
       </div>
     </div>
+    <!-- Fine Bottom Brass Double-Hairline -->
+    <div class="h-[2px] w-full bg-gradient-to-r from-transparent via-[#b8a378]/40 to-transparent"></div>
 
     <!-- Mobile Collapsible Navigation Drawer -->
-    <div id="mobileMenuPanel" class="hidden lg:hidden bg-[#100e14] border-b border-[#b8a378]/30 px-4 pt-3 pb-5 space-y-2">
+    <div id="mobileMenuPanel" class="hidden lg:hidden bg-[#0c0a10]/98 border-b border-[#b8a378]/35 px-4 pt-4 pb-6 space-y-2.5">
+      <div class="text-[10px] font-display tracking-[0.28em] text-[#b8a378] uppercase px-1">SALON CHAMBERS — 三陣営名鑑</div>
       <div class="grid grid-cols-3 gap-2 pb-2">
-        <button type="button" data-page-route="faction_a" class="page-route-btn py-2.5 rounded-xl text-xs font-bold text-[#e2a8b8] bg-[#e2a8b8]/15 border border-[#e2a8b8]/40 text-center">
+        <button type="button" data-page-route="faction_a" class="page-route-btn py-2.5 rounded-xl text-xs font-serif-jp font-bold text-[#e2a8b8] bg-[#e2a8b8]/12 border border-[#e2a8b8]/40 text-center">
           魔法少女
         </button>
-        <button type="button" data-page-route="faction_b" class="page-route-btn py-2.5 rounded-xl text-xs font-bold text-[#b86b77] bg-[#b86b77]/15 border border-[#b86b77]/40 text-center">
+        <button type="button" data-page-route="faction_b" class="page-route-btn py-2.5 rounded-xl text-xs font-serif-jp font-bold text-[#b86b77] bg-[#b86b77]/12 border border-[#b86b77]/40 text-center">
           悪
         </button>
-        <button type="button" data-page-route="faction_c" class="page-route-btn py-2.5 rounded-xl text-xs font-bold text-[#8da4b8] bg-[#8da4b8]/15 border border-[#8da4b8]/40 text-center">
+        <button type="button" data-page-route="faction_c" class="page-route-btn py-2.5 rounded-xl text-xs font-serif-jp font-bold text-[#8da4b8] bg-[#8da4b8]/12 border border-[#8da4b8]/40 text-center">
           中立
         </button>
       </div>
-      <button type="button" data-page-route="home" data-nav-target="sec-home" class="page-route-btn nav-scroll-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs text-[#dfd9cc] hover:bg-[#b8a378]/15 flex items-center justify-between">
-        <span>トップ</span><span class="text-xs text-[#b8a378]">→</span>
+      <button type="button" data-page-route="home" data-nav-target="sec-home" class="page-route-btn nav-scroll-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs text-[#dfd9cc] hover:bg-[#b8a378]/15 flex items-center justify-between border-b border-[#b8a378]/10">
+        <span class="font-serif-jp">ENTRANCE — トップ</span><span class="text-xs text-[#b8a378]">→</span>
       </button>
-      <button type="button" data-page-route="about" data-nav-target="sec-about" class="page-route-btn nav-scroll-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs text-[#dfd9cc] hover:bg-[#b8a378]/15 flex items-center justify-between">
-        <span>世界観・三陣営</span><span class="text-xs text-[#b8a378]">→</span>
+      <button type="button" data-page-route="about" data-nav-target="sec-about" class="page-route-btn nav-scroll-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs text-[#dfd9cc] hover:bg-[#b8a378]/15 flex items-center justify-between border-b border-[#b8a378]/10">
+        <span class="font-serif-jp">CONCEPT — 世界観・サロン案内</span><span class="text-xs text-[#b8a378]">→</span>
       </button>
-      <button type="button" data-page-route="all_casts" data-nav-target="sec-cast" class="page-route-btn nav-scroll-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-[#d6c6a5] bg-[#b8a378]/10 flex items-center justify-between">
-        <span>在籍キャスト一覧</span><span class="text-xs text-[#b8a378]">→</span>
+      <button type="button" data-page-route="all_casts" data-nav-target="sec-cast" class="page-route-btn nav-scroll-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold text-[#d6c6a5] bg-[#b8a378]/10 flex items-center justify-between border border-[#b8a378]/30">
+        <span class="font-serif-jp">DIRECTORY — 在籍キャスト名鑑</span><span class="text-xs text-[#b8a378]">→</span>
       </button>
-      <button type="button" data-page-route="actors" class="page-route-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs text-[#dfd9cc] hover:bg-[#b8a378]/15 flex items-center justify-between">
-        <span>演者別一覧</span><span class="text-xs text-[#b8a378]">→</span>
+      <button type="button" data-page-route="actors" class="page-route-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs text-[#dfd9cc] hover:bg-[#b8a378]/15 flex items-center justify-between border-b border-[#b8a378]/10">
+        <span class="font-serif-jp">PERFORMERS — 演者別一覧</span><span class="text-xs text-[#b8a378]">→</span>
       </button>
-      <button type="button" data-page-route="archive" data-nav-target="sec-archive" class="page-route-btn nav-scroll-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs text-[#dfd9cc] hover:bg-[#b8a378]/15 flex items-center justify-between">
-        <span>営業記録</span><span class="text-xs text-[#b8a378]">→</span>
+      <button type="button" data-page-route="archive" data-nav-target="sec-archive" class="page-route-btn nav-scroll-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs text-[#dfd9cc] hover:bg-[#b8a378]/15 flex items-center justify-between border-b border-[#b8a378]/10">
+        <span class="font-serif-jp">CHRONICLE — 営業記録アーカイブ</span><span class="text-xs text-[#b8a378]">→</span>
       </button>
       <button type="button" data-page-route="x_feed" data-nav-target="sec-x-feed" class="page-route-btn nav-scroll-btn w-full text-left px-3.5 py-2.5 rounded-xl text-xs text-[#dfd9cc] hover:bg-[#b8a378]/15 flex items-center justify-between">
-        <span>#リベリア_VRC</span><span class="text-xs text-[#b8a378]">→</span>
+        <span class="font-serif-jp">LOUNGE LOG — #リベリア_VRC</span><span class="text-xs text-[#b8a378]">→</span>
       </button>
     </div>
   </header>
 
   <!-- Subtle Breadcrumb Bar -->
-  <div id="subpageBreadcrumbBar" class="hidden bg-[#110f16] border-b border-[#b8a378]/25 py-2.5 px-4 sm:px-6">
+  <div id="subpageBreadcrumbBar" class="hidden bg-[#0e0c13]/95 border-b border-[#b8a378]/30 py-2.5 px-4 sm:px-6">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-2 text-xs sm:text-sm">
+      <div class="flex items-center gap-2.5 text-xs sm:text-sm">
         <span class="text-[#b8a378]">✦</span>
+        <span class="font-display text-[10px] tracking-[0.25em] text-[#b8a378] uppercase">SALON ROOM</span>
+        <span class="text-[#b8a378]/40">|</span>
         <span id="currentPageBreadcrumb" class="font-serif-jp text-[#dfd9cc] font-medium">総合トップ</span>
       </div>
-      <button type="button" data-page-route="home" class="page-route-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold border border-[#b8a378]/40 bg-[#1b1824] text-[#d6c6a5] hover:bg-[#b8a378] hover:text-[#0b0a0e] transition">
-        ← 総合トップへ戻る
+      <button type="button" data-page-route="home" class="page-route-btn px-4 py-1.5 rounded-xl text-xs font-serif-jp font-semibold border border-[#b8a378]/45 bg-[#16131d] text-[#d6c6a5] hover:bg-[#b8a378] hover:text-[#0b0a0e] transition">
+        ← サロン総合エントランスへ戻る
       </button>
     </div>
   </div>
 
   <main class="flex-1 relative z-10">
     <!-- ==========================================
-         1. トップページ (Home) — Official Logo, Stage Curtain Light Rays & Rotating Nocturne Astrolabe
+         1. トップページ (Home) — Authentic Luxury Nocturne Salon Architectural Stage
          ========================================== -->
-    <section id="sec-home" class="page-section relative overflow-hidden border-b border-[#b8a378]/25 py-14 sm:py-22">
-      <!-- Hero Section Dedicated Stage Curtain Light Streaks (rene-bohmer) & Stardust Layer -->
+    <section id="sec-home" class="page-section relative overflow-hidden border-b border-[#b8a378]/30 pt-10 pb-20 sm:pt-16 sm:pb-28">
+      <!-- Hero Section Dedicated Stage Curtain Light Streaks (rene-bohmer) & Chandelier Aura -->
       <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <img id="heroStageStreaksImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""
-             class="w-full h-full object-cover object-top opacity-[0.38] mix-blend-screen animate-curtain-pulse"
-             style="mask-image: radial-gradient(ellipse 80% 75% at 50% 18%, black 30%, transparent 90%); -webkit-mask-image: radial-gradient(ellipse 80% 75% at 50% 18%, black 30%, transparent 90%);">
-        <div class="absolute inset-0 bg-gradient-to-b from-[#08070a]/30 via-transparent to-[#08070a]/90"></div>
+             class="w-full h-full object-cover object-top opacity-[0.44] mix-blend-screen animate-curtain-pulse"
+             style="mask-image: radial-gradient(ellipse 85% 78% at 50% 15%, black 35%, transparent 92%); -webkit-mask-image: radial-gradient(ellipse 85% 78% at 50% 15%, black 35%, transparent 92%);">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#070609]/20 via-transparent to-[#070609]/95"></div>
       </div>
 
-      <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="reveal-on-scroll relative overflow-hidden p-8 sm:p-14 rounded-3xl bg-[#0c0b10]/82 backdrop-blur-md border border-[#b8a378]/45 shadow-[0_25px_70px_-15px_rgba(0,0,0,0.95)]">
-          <!-- Subtle Corner Filigree Accents -->
-          <span class="pointer-events-none absolute top-3 left-3 w-5 h-5 border-t border-l border-[#b8a378]/55"></span>
-          <span class="pointer-events-none absolute top-3 right-3 w-5 h-5 border-t border-r border-[#b8a378]/55"></span>
-          <span class="pointer-events-none absolute bottom-3 left-3 w-5 h-5 border-b border-l border-[#b8a378]/55"></span>
-          <span class="pointer-events-none absolute bottom-3 right-3 w-5 h-5 border-b border-r border-[#b8a378]/55"></span>
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Grand Architectural Stage Frame with Left & Right Tategaki Poetic Pillars -->
+        <div class="reveal-on-scroll salon-double-frame px-5 py-10 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
+          <span class="salon-corner-tl"></span>
+          <span class="salon-corner-tr"></span>
+          <span class="salon-corner-bl"></span>
+          <span class="salon-corner-br"></span>
 
-          <!-- Official Rivellia Logo Image with Rotating Astronomical Nocturne Rings -->
-          <div class="relative mb-7 flex justify-center items-center py-4">
-            <!-- Outer Slow Clockwise Magic Ring -->
-            <svg class="pointer-events-none absolute left-1/2 top-1/2 w-72 h-72 sm:w-96 sm:h-96 opacity-30 text-[#b8a378]"
-                 style="animation: magicCircleRotateCW 64s linear infinite;" viewBox="0 0 200 200" fill="none" aria-hidden="true">
-              <circle cx="100" cy="100" r="94" stroke="currentColor" stroke-width="0.6" stroke-dasharray="3 3"/>
-              <circle cx="100" cy="100" r="86" stroke="currentColor" stroke-width="0.5"/>
-              <polygon points="100,14 174,143 26,143" stroke="currentColor" stroke-width="0.45" opacity="0.6"/>
-              <polygon points="100,186 174,57 26,57" stroke="currentColor" stroke-width="0.45" opacity="0.6"/>
-              <circle cx="100" cy="14" r="2.2" fill="#e2a8b8"/>
-              <circle cx="174" cy="143" r="2.2" fill="#b86b77"/>
-              <circle cx="26" cy="143" r="2.2" fill="#8da4b8"/>
-            </svg>
-            <!-- Inner Counter-Clockwise Astrolabe Ring -->
-            <svg class="pointer-events-none absolute left-1/2 top-1/2 w-56 h-56 sm:w-72 sm:h-72 opacity-25 text-[#d6c6a5]"
-                 style="animation: magicCircleRotateCCW 42s linear infinite;" viewBox="0 0 200 200" fill="none" aria-hidden="true">
-              <circle cx="100" cy="100" r="76" stroke="currentColor" stroke-width="0.6" stroke-dasharray="8 4"/>
-              <rect x="46" y="46" width="108" height="108" stroke="currentColor" stroke-width="0.45" transform="rotate(45 100 100)"/>
-            </svg>
-
-            <img id="heroLogoImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="魔法少女と悪のノクターンサロン Rivellia（リベリア）公式ロゴ" class="relative z-10 w-64 sm:w-80 md:w-96 max-w-full h-auto rounded-2xl border border-[#b8a378]/40 shadow-2xl mx-auto animate-logo-float">
+          <!-- Top Salon Crest Plaque -->
+          <div class="text-center mb-6">
+            <div class="inline-flex items-center gap-3 px-4 py-1 border-b border-[#b8a378]/35">
+              <span class="text-[#b8a378] text-[10px]">✦</span>
+              <span class="font-display text-[11px] sm:text-xs tracking-[0.38em] text-[#d6c6a5] uppercase">NOCTURNE SALON &amp; PRIVATE LOUNGE — RIVELLIA</span>
+              <span class="text-[#b8a378] text-[10px]">✦</span>
+            </div>
           </div>
 
-          <div class="ornament-divider my-5">
-            <span class="text-[#b8a378] text-xs tracking-[0.35em] font-serif-jp">リ ベ リ ア</span>
-          </div>
-
-          <!-- Line break right before 三つの as requested -->
-          <p id="heroCatchphrase" class="font-serif-jp text-lg sm:text-2xl text-[#e6e0d4] font-semibold leading-relaxed mt-5">
-            魔法少女、悪、そして中立――<br>三つの立場が交錯する魔法少女と悪のノクターンサロン
-          </p>
-          <p id="heroSubCatchphrase" class="font-serif-jp text-xs sm:text-base text-[#b0a898] leading-relaxed mt-3 max-w-2xl mx-auto">
-            光と闇、そして境界の観測者たちが同じ夜に集い、言葉と物語を紡ぐVRChatサロン。
-          </p>
-
-          <!-- Direct Category Page Gate Buttons -->
-          <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
-            <button type="button" data-page-route="faction_a" class="page-route-btn gate-card-shimmer relative overflow-hidden p-5 rounded-2xl bg-[#130f14]/90 hover:bg-[#1b141c] border border-[#e2a8b8]/45 text-left transition group">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-display tracking-widest text-[#e2a8b8]">MAGICAL GIRLS</span>
-                <span id="heroCountA" class="text-xs px-2.5 py-0.5 rounded-sm bg-[#e2a8b8]/15 text-[#e2a8b8]">0名</span>
+          <!-- Center Stage Grid: Left Tategaki Pillar / Center Emblem & Catchphrase / Right Tategaki Pillar -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <!-- Left Vertical Tategaki Poetic Pillar (Desktop) -->
+            <div class="hidden lg:flex lg:col-span-2 justify-center items-center py-6">
+              <div class="tategaki-poem text-xs xl:text-sm border-l border-r border-[#b8a378]/20 px-3 py-6">
+                光と闇が交差する、会員制ノクターン・ラウンジ
               </div>
-              <div class="font-serif-jp text-xl font-bold text-[#ebe6dc] mt-2 group-hover:text-[#e2a8b8] transition">魔法少女 →</div>
-              <div class="text-xs text-[#9e9689] mt-1">光・正義・契約を背負う者たち</div>
-            </button>
-
-            <button type="button" data-page-route="faction_b" class="page-route-btn gate-card-shimmer relative overflow-hidden p-5 rounded-2xl bg-[#140e12]/90 hover:bg-[#1c1318] border border-[#b86b77]/45 text-left transition group">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-display tracking-widest text-[#b86b77]">FORCES OF EVIL</span>
-                <span id="heroCountB" class="text-xs px-2.5 py-0.5 rounded-sm bg-[#b86b77]/15 text-[#b86b77]">0名</span>
-              </div>
-              <div class="font-serif-jp text-xl font-bold text-[#ebe6dc] mt-2 group-hover:text-[#b86b77] transition">悪 →</div>
-              <div class="text-xs text-[#9e9689] mt-1">闇・混沌・深淵を統べる者たち</div>
-            </button>
-
-            <button type="button" data-page-route="faction_c" class="page-route-btn gate-card-shimmer relative overflow-hidden p-5 rounded-2xl bg-[#0e1217]/90 hover:bg-[#141a22] border border-[#8da4b8]/45 text-left transition group">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-display tracking-widest text-[#8da4b8]">NEUTRAL</span>
-                <span id="heroCountC" class="text-xs px-2.5 py-0.5 rounded-sm bg-[#8da4b8]/15 text-[#8da4b8]">0名</span>
-              </div>
-              <div class="font-serif-jp text-xl font-bold text-[#ebe6dc] mt-2 group-hover:text-[#8da4b8] transition">中立 →</div>
-              <div class="text-xs text-[#9e9689] mt-1">境界・観測者・審判役</div>
-            </button>
-          </div>
-
-          <div class="mt-8 flex flex-wrap items-center justify-center gap-3.5">
-            <button type="button" data-nav-target="sec-cast" class="nav-scroll-btn inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#8c7853] via-[#b8a378] to-[#8c7853] text-[#0b0a0e] font-bold text-sm shadow-lg hover:brightness-110 transition">
-              <span>在籍キャスト一覧を見る</span>
-            </button>
-            <button type="button" data-nav-target="sec-about" class="nav-scroll-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#17151e] hover:bg-[#211e2b] text-[#d6c6a5] border border-[#b8a378]/40 text-sm font-medium transition">
-              <span>サロンの世界観</span>
-            </button>
-          </div>
-
-          <!-- Official Key Visual & Faction Posters Showcase -->
-          <div class="mt-12 pt-10 border-t border-[#b8a378]/25 text-left">
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
-              <div>
-                <span class="font-display text-[11px] tracking-[0.3em] text-[#b8a378] uppercase">OFFICIAL KEY VISUAL &amp; POSTERS</span>
-                <h3 class="font-serif-jp text-lg sm:text-2xl font-bold text-[#ebe6dc] mt-0.5">
-                  リベリア 公式キービジュアル＆三陣営ポスター
-                </h3>
-              </div>
-              <span class="text-xs text-[#9e9689]">◇ 画像をクリックすると拡大表示されます</span>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-              <!-- Main All-Cast Key Visual Poster (全員集合.jpg) -->
-              <div class="lg:col-span-6 card-nocturne rounded-2xl p-4 sm:p-5 flex flex-col justify-between border border-[#b8a378]/45">
-                <div class="relative group overflow-hidden rounded-xl border border-[#b8a378]/35 bg-[#08070a] cursor-pointer"
+            <!-- Center Salon Emblem, Rotating Astrolabe & Editorial Catchphrase -->
+            <div class="lg:col-span-8 text-center">
+              <div class="relative mb-7 flex justify-center items-center py-6">
+                <!-- Outer Slow Clockwise Astronomical Brass Ring -->
+                <svg class="pointer-events-none absolute left-1/2 top-1/2 w-72 h-72 sm:w-[410px] sm:h-[410px] opacity-35 text-[#b8a378]"
+                     style="animation: magicCircleRotateCW 64s linear infinite;" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+                  <circle cx="100" cy="100" r="95" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 3"/>
+                  <circle cx="100" cy="100" r="88" stroke="currentColor" stroke-width="0.6"/>
+                  <circle cx="100" cy="100" r="82" stroke="currentColor" stroke-width="0.3"/>
+                  <polygon points="100,12 176,144 24,144" stroke="currentColor" stroke-width="0.45" opacity="0.65"/>
+                  <polygon points="100,188 176,56 24,56" stroke="currentColor" stroke-width="0.45" opacity="0.65"/>
+                  <circle cx="100" cy="12" r="2.4" fill="#e2a8b8"/>
+                  <circle cx="176" cy="144" r="2.4" fill="#b86b77"/>
+                  <circle cx="24" cy="144" r="2.4" fill="#8da4b8"/>
+                </svg>
+                <!-- Inner Counter-Clockwise Astrolabe Ring -->
+                <svg class="pointer-events-none absolute left-1/2 top-1/2 w-56 h-56 sm:w-80 sm:h-80 opacity-28 text-[#d6c6a5]"
+                     style="animation: magicCircleRotateCCW 42s linear infinite;" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+                  <circle cx="100" cy="100" r="76" stroke="currentColor" stroke-width="0.55" stroke-dasharray="8 4"/>
+                  <rect x="46" y="46" width="108" height="108" stroke="currentColor" stroke-width="0.45" transform="rotate(45 100 100)"/>
+                  <rect x="46" y="46" width="108" height="108" stroke="currentColor" stroke-width="0.35"/>
+                </svg>
+
+                <!-- Official Logo Mounted in a Double-Brass Salon Medallion Frame -->
+                <div class="relative z-10 p-2 bg-gradient-to-b from-[#d6c6a5]/30 via-[#0b0a0f] to-[#b8a378]/30 border border-[#b8a378]/55 shadow-[0_25px_60px_rgba(0,0,0,0.95)] animate-logo-float">
+                  <img id="heroLogoImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="魔法少女と悪のノクターンサロン Rivellia（リベリア）公式ロゴ" class="w-64 sm:w-80 md:w-96 max-w-full h-auto block border border-[#b8a378]/35">
+                </div>
+              </div>
+
+              <div class="ornament-divider my-5">
+                <span class="text-[#d6c6a5] text-xs tracking-[0.45em] font-serif-jp">リ ベ リ ア</span>
+              </div>
+
+              <!-- Line break right before 三つの as requested -->
+              <p id="heroCatchphrase" class="font-serif-jp text-lg sm:text-2xl md:text-[26px] text-[#ede5d5] font-semibold leading-[1.9] mt-5 tracking-wider">
+                魔法少女、悪、そして中立――<br>三つの立場が交錯する魔法少女と悪のノクターンサロン
+              </p>
+              <p id="heroSubCatchphrase" class="font-serif-jp text-xs sm:text-sm md:text-base text-[#b8afa0] leading-[2.0] mt-4 max-w-2xl mx-auto tracking-wide">
+                武器も正義も扉の外へ預け、今宵はただ一人の「客」としてグラスを傾ける。<br class="hidden sm:inline">光と闇、そして境界の観測者たちが同じ夜に集い、言葉と物語を紡ぐVRChat会員制サロン・ラウンジ。
+              </p>
+
+              <!-- Primary Lounge Entrance Actions -->
+              <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+                <button type="button" data-nav-target="sec-cast" class="nav-scroll-btn inline-flex items-center gap-3 px-8 py-3.5 bg-gradient-to-r from-[#8c7853] via-[#d6c6a5] to-[#8c7853] text-[#09080c] font-serif-jp font-bold text-xs sm:text-sm tracking-widest shadow-[0_10px_30px_rgba(184,163,120,0.3)] hover:brightness-110 transition">
+                  <span>在籍キャスト名鑑を紐解く</span>
+                  <span>→</span>
+                </button>
+                <button type="button" data-nav-target="sec-about" class="nav-scroll-btn inline-flex items-center gap-3 px-7 py-3.5 bg-[#121018]/90 hover:bg-[#1d1926] text-[#d6c6a5] border border-[#b8a378]/50 font-serif-jp text-xs sm:text-sm font-medium tracking-widest transition">
+                  <span>サロンの世界観・お過ごし方</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Vertical Tategaki Poetic Pillar (Desktop) -->
+            <div class="hidden lg:flex lg:col-span-2 justify-center items-center py-6">
+              <div class="tategaki-poem text-xs xl:text-sm border-l border-r border-[#b8a378]/20 px-3 py-6">
+                今宵、境界のサロンにて物語のグラスを傾ける
+              </div>
+            </div>
+          </div>
+
+          <!-- Three Lounge Chamber Door Plaques (MAGICAL GIRLS / FORCES OF EVIL / NEUTRAL) -->
+          <div class="mt-14 pt-10 border-t border-[#b8a378]/25">
+            <div class="text-center mb-6">
+              <span class="font-display text-[11px] tracking-[0.35em] text-[#b8a378] uppercase">SALON CHAMBERS — 三つの陣営扉</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-5xl mx-auto">
+              <!-- Chamber I: Magical Girls -->
+              <button type="button" data-page-route="faction_a" class="page-route-btn salon-door-plaque gate-card-shimmer p-6 text-left group border-t-2 border-t-[#e2a8b8]/70 hover:border-[#e2a8b8]/70">
+                <div class="flex items-center justify-between border-b border-[#e2a8b8]/20 pb-2.5">
+                  <span class="text-[10px] font-display tracking-[0.28em] text-[#e2a8b8]">CHAMBER I : MAGICAL GIRLS</span>
+                  <span id="heroCountA" class="text-[11px] font-serif-jp px-2.5 py-0.5 bg-[#e2a8b8]/15 text-[#e2a8b8] border border-[#e2a8b8]/35">0名</span>
+                </div>
+                <div class="flex items-baseline justify-between mt-3.5">
+                  <div class="font-serif-jp text-xl sm:text-2xl font-bold text-[#ede5d5] group-hover:text-[#e2a8b8] transition tracking-wider">魔法少女</div>
+                  <span class="font-display text-xs tracking-widest text-[#e2a8b8] group-hover:translate-x-1 transition">ENTER →</span>
+                </div>
+                <div class="font-serif-jp text-xs text-[#a89f91] mt-2 leading-relaxed">光・正義・契約を背負い、夜に羽を休める者たち</div>
+              </button>
+
+              <!-- Chamber II: Forces of Evil -->
+              <button type="button" data-page-route="faction_b" class="page-route-btn salon-door-plaque gate-card-shimmer p-6 text-left group border-t-2 border-t-[#b86b77]/70 hover:border-[#b86b77]/70">
+                <div class="flex items-center justify-between border-b border-[#b86b77]/20 pb-2.5">
+                  <span class="text-[10px] font-display tracking-[0.28em] text-[#b86b77]">CHAMBER II : FORCES OF EVIL</span>
+                  <span id="heroCountB" class="text-[11px] font-serif-jp px-2.5 py-0.5 bg-[#b86b77]/15 text-[#b86b77] border border-[#b86b77]/35">0名</span>
+                </div>
+                <div class="flex items-baseline justify-between mt-3.5">
+                  <div class="font-serif-jp text-xl sm:text-2xl font-bold text-[#ede5d5] group-hover:text-[#b86b77] transition tracking-wider">悪</div>
+                  <span class="font-display text-xs tracking-widest text-[#b86b77] group-hover:translate-x-1 transition">ENTER →</span>
+                </div>
+                <div class="font-serif-jp text-xs text-[#a89f91] mt-2 leading-relaxed">闇・混沌・深淵を統べ、紫煙と静寂を嗜む者たち</div>
+              </button>
+
+              <!-- Chamber III: Neutral -->
+              <button type="button" data-page-route="faction_c" class="page-route-btn salon-door-plaque gate-card-shimmer p-6 text-left group border-t-2 border-t-[#8da4b8]/70 hover:border-[#8da4b8]/70">
+                <div class="flex items-center justify-between border-b border-[#8da4b8]/20 pb-2.5">
+                  <span class="text-[10px] font-display tracking-[0.28em] text-[#8da4b8]">CHAMBER III : NEUTRAL</span>
+                  <span id="heroCountC" class="text-[11px] font-serif-jp px-2.5 py-0.5 bg-[#8da4b8]/15 text-[#8da4b8] border border-[#8da4b8]/35">0名</span>
+                </div>
+                <div class="flex items-baseline justify-between mt-3.5">
+                  <div class="font-serif-jp text-xl sm:text-2xl font-bold text-[#ede5d5] group-hover:text-[#8da4b8] transition tracking-wider">中立</div>
+                  <span class="font-display text-xs tracking-widest text-[#8da4b8] group-hover:translate-x-1 transition">ENTER →</span>
+                </div>
+                <div class="font-serif-jp text-xs text-[#a89f91] mt-2 leading-relaxed">光と闇の狭間に佇み、夜の均衡を見届ける観測者</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- SALON GALLERY & EXHIBITION: Museum-Framed Key Visual & Faction Posters -->
+          <div class="mt-16 pt-12 border-t border-[#b8a378]/30 text-left">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
+              <div>
+                <span class="font-display text-[11px] tracking-[0.35em] text-[#b8a378] uppercase">SALON GALLERY &amp; EXHIBITION</span>
+                <h3 class="font-serif-jp text-xl sm:text-2xl md:text-3xl font-bold text-[#ede5d5] mt-1 tracking-wide">
+                  サロン・ギャラリー：公式キービジュアル＆三陣営肖像画
+                </h3>
+              </div>
+              <span class="text-xs font-serif-jp text-[#a89f91] border border-[#b8a378]/30 bg-[#100e15] px-3.5 py-1.5">
+                ◇ 各額装アートをクリックすると高精細プレビューが開きます
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-stretch">
+              <!-- Main All-Cast Key Visual Poster in Grand Brass Museum Frame (全員集合.jpg) -->
+              <div class="lg:col-span-6 flex flex-col justify-between">
+                <div class="luxury-poster-frame h-full flex flex-col justify-between cursor-pointer group"
                      data-poster-key="all" data-poster-title="魔法少女と悪のノクターンサロン Rivellia — 全員集合キービジュアルポスター">
-                  <img id="homePosterAllImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="全員集合キービジュアルポスター" class="w-full aspect-square object-cover group-hover:scale-[1.02] transition duration-500">
-                  <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4 flex items-end justify-between">
-                    <div>
-                      <span class="px-2.5 py-0.5 rounded-sm text-[10px] font-bold bg-[#b8a378] text-[#0b0a0e]">ALL CAST KEY VISUAL</span>
-                      <div class="font-serif-jp text-sm sm:text-base font-bold text-[#ebe6dc] mt-1">全員集合キービジュアル</div>
+                  <div class="relative overflow-hidden border border-[#b8a378]/35 bg-[#060508]">
+                    <img id="homePosterAllImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="全員集合キービジュアルポスター" class="w-full aspect-square object-cover group-hover:scale-[1.02] transition duration-700">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-4 sm:p-5 flex items-end justify-between">
+                      <div>
+                        <span class="font-display text-[10px] tracking-[0.25em] px-2.5 py-0.5 bg-[#b8a378] text-[#09080c] font-bold uppercase">GRAND EXHIBITION</span>
+                        <div class="font-serif-jp text-base sm:text-lg font-bold text-[#ede5d5] mt-1.5 tracking-wider">Rivellia 全員集合キービジュアル</div>
+                      </div>
+                      <span class="px-3 py-1 bg-black/80 border border-[#b8a378]/50 text-xs text-[#d6c6a5] font-serif-jp">◇ 額装拡大</span>
                     </div>
-                    <span class="px-3 py-1 rounded-lg bg-black/70 border border-[#b8a378]/50 text-xs text-[#d6c6a5] font-semibold">◇ 拡大</span>
+                  </div>
+                  <!-- Brass Museum Plaque Caption -->
+                  <div class="pt-3 px-2 flex items-center justify-between text-[11px] text-[#a89f91] font-serif-jp">
+                    <span>PLATE 00 — ALL CAST ENSEMBLE</span>
+                    <span class="text-[#d6c6a5]">Nocturne Salon Rivellia</span>
                   </div>
                 </div>
               </div>
 
-              <!-- 3 Faction Vertical Posters (魔法.jpg / 悪.jpg / 中立.jpg) -->
+              <!-- 3 Faction Vertical Posters in Museum Frames (魔法.jpg / 悪.jpg / 中立.jpg) -->
               <div class="lg:col-span-6 flex flex-col justify-between gap-4">
-                <div class="grid grid-cols-3 gap-3 sm:gap-4 flex-1">
-                  <!-- Magical Poster -->
-                  <div class="card-nocturne rounded-2xl p-2.5 sm:p-3 flex flex-col justify-between border border-[#e2a8b8]/45">
-                    <div class="relative group overflow-hidden rounded-xl border border-[#e2a8b8]/35 bg-[#08070a] cursor-pointer"
+                <div class="grid grid-cols-3 gap-3.5 sm:gap-4 flex-1">
+                  <!-- Magical Poster Frame -->
+                  <div class="luxury-poster-frame flex flex-col justify-between" style="border-color: rgba(226, 168, 184, 0.45);">
+                    <div class="relative group overflow-hidden border border-[#e2a8b8]/35 bg-[#060508] cursor-pointer"
                          data-poster-key="faction_a" data-poster-title="Rivellia 公式ポスター — 魔法少女">
-                      <img id="homePosterAImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="魔法少女ポスター" class="w-full aspect-[3/5] object-cover group-hover:scale-[1.03] transition duration-500">
-                      <div class="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/75 border border-[#e2a8b8]/45 text-[10px] text-[#e2a8b8]">🔍</div>
+                      <img id="homePosterAImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="魔法少女ポスター" class="w-full aspect-[3/5] object-cover group-hover:scale-[1.03] transition duration-700">
+                      <div class="absolute top-2 right-2 px-2 py-0.5 bg-black/80 border border-[#e2a8b8]/45 text-[10px] text-[#e2a8b8]">◇</div>
                     </div>
-                    <div class="pt-2.5 text-center">
-                      <div class="font-serif-jp text-xs sm:text-sm font-bold text-[#e2a8b8]">魔法少女</div>
-                      <button type="button" data-page-route="faction_a" class="page-route-btn mt-1.5 w-full py-1.5 rounded-lg bg-[#e2a8b8]/15 hover:bg-[#e2a8b8]/30 border border-[#e2a8b8]/40 text-[11px] font-semibold text-[#e2a8b8] transition">
-                        名鑑へ →
+                    <div class="pt-3 text-center">
+                      <div class="font-display text-[9px] tracking-[0.22em] text-[#e2a8b8]/80 uppercase">PLATE I</div>
+                      <div class="font-serif-jp text-xs sm:text-sm font-bold text-[#e2a8b8] mt-0.5">魔法少女</div>
+                      <button type="button" data-page-route="faction_a" class="page-route-btn mt-2 w-full py-1.5 bg-[#e2a8b8]/12 hover:bg-[#e2a8b8]/28 border border-[#e2a8b8]/40 text-[11px] font-serif-jp font-semibold text-[#e2a8b8] transition">
+                        室へ進む →
                       </button>
                     </div>
                   </div>
 
-                  <!-- Evil Poster -->
-                  <div class="card-nocturne rounded-2xl p-2.5 sm:p-3 flex flex-col justify-between border border-[#b86b77]/45">
-                    <div class="relative group overflow-hidden rounded-xl border border-[#b86b77]/35 bg-[#08070a] cursor-pointer"
+                  <!-- Evil Poster Frame -->
+                  <div class="luxury-poster-frame flex flex-col justify-between" style="border-color: rgba(184, 107, 119, 0.45);">
+                    <div class="relative group overflow-hidden border border-[#b86b77]/35 bg-[#060508] cursor-pointer"
                          data-poster-key="faction_b" data-poster-title="Rivellia 公式ポスター — 悪">
-                      <img id="homePosterBImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="悪ポスター" class="w-full aspect-[3/5] object-cover group-hover:scale-[1.03] transition duration-500">
-                      <div class="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/75 border border-[#b86b77]/45 text-[10px] text-[#b86b77]">🔍</div>
+                      <img id="homePosterBImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="悪ポスター" class="w-full aspect-[3/5] object-cover group-hover:scale-[1.03] transition duration-700">
+                      <div class="absolute top-2 right-2 px-2 py-0.5 bg-black/80 border border-[#b86b77]/45 text-[10px] text-[#b86b77]">◇</div>
                     </div>
-                    <div class="pt-2.5 text-center">
-                      <div class="font-serif-jp text-xs sm:text-sm font-bold text-[#b86b77]">悪</div>
-                      <button type="button" data-page-route="faction_b" class="page-route-btn mt-1.5 w-full py-1.5 rounded-lg bg-[#b86b77]/15 hover:bg-[#b86b77]/30 border border-[#b86b77]/40 text-[11px] font-semibold text-[#b86b77] transition">
-                        名鑑へ →
+                    <div class="pt-3 text-center">
+                      <div class="font-display text-[9px] tracking-[0.22em] text-[#b86b77]/80 uppercase">PLATE II</div>
+                      <div class="font-serif-jp text-xs sm:text-sm font-bold text-[#b86b77] mt-0.5">悪</div>
+                      <button type="button" data-page-route="faction_b" class="page-route-btn mt-2 w-full py-1.5 bg-[#b86b77]/12 hover:bg-[#b86b77]/28 border border-[#b86b77]/40 text-[11px] font-serif-jp font-semibold text-[#b86b77] transition">
+                        室へ進む →
                       </button>
                     </div>
                   </div>
 
-                  <!-- Neutral Poster -->
-                  <div class="card-nocturne rounded-2xl p-2.5 sm:p-3 flex flex-col justify-between border border-[#8da4b8]/45">
-                    <div class="relative group overflow-hidden rounded-xl border border-[#8da4b8]/35 bg-[#08070a] cursor-pointer"
+                  <!-- Neutral Poster Frame -->
+                  <div class="luxury-poster-frame flex flex-col justify-between" style="border-color: rgba(141, 164, 184, 0.45);">
+                    <div class="relative group overflow-hidden border border-[#8da4b8]/35 bg-[#060508] cursor-pointer"
                          data-poster-key="faction_c" data-poster-title="Rivellia 公式ポスター — 中立">
-                      <img id="homePosterCImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="中立ポスター" class="w-full aspect-[3/5] object-cover group-hover:scale-[1.03] transition duration-500">
-                      <div class="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/75 border border-[#8da4b8]/45 text-[10px] text-[#8da4b8]">🔍</div>
+                      <img id="homePosterCImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="中立ポスター" class="w-full aspect-[3/5] object-cover group-hover:scale-[1.03] transition duration-700">
+                      <div class="absolute top-2 right-2 px-2 py-0.5 bg-black/80 border border-[#8da4b8]/45 text-[10px] text-[#8da4b8]">◇</div>
                     </div>
-                    <div class="pt-2.5 text-center">
-                      <div class="font-serif-jp text-xs sm:text-sm font-bold text-[#8da4b8]">中立</div>
-                      <button type="button" data-page-route="faction_c" class="page-route-btn mt-1.5 w-full py-1.5 rounded-lg bg-[#8da4b8]/15 hover:bg-[#8da4b8]/30 border border-[#8da4b8]/40 text-[11px] font-semibold text-[#8da4b8] transition">
-                        名鑑へ →
+                    <div class="pt-3 text-center">
+                      <div class="font-display text-[9px] tracking-[0.22em] text-[#8da4b8]/80 uppercase">PLATE III</div>
+                      <div class="font-serif-jp text-xs sm:text-sm font-bold text-[#8da4b8] mt-0.5">中立</div>
+                      <button type="button" data-page-route="faction_c" class="page-route-btn mt-2 w-full py-1.5 bg-[#8da4b8]/12 hover:bg-[#8da4b8]/28 border border-[#8da4b8]/40 text-[11px] font-serif-jp font-semibold text-[#8da4b8] transition">
+                        室へ進む →
                       </button>
                     </div>
                   </div>
                 </div>
 
-                <div class="p-4 rounded-2xl bg-[#110f16] border border-[#b8a378]/25 flex flex-wrap items-center justify-between gap-2 text-xs text-[#b0a898]">
-                  <span>✦ 全員集合＆三陣営の公式ポスターはクリックで高画質拡大表示できます</span>
+                <!-- Concierge Note Box -->
+                <div class="p-4 bg-[#0d0b12]/95 border border-[#b8a378]/30 flex flex-wrap items-center justify-between gap-2 text-xs text-[#b0a898] font-serif-jp">
+                  <span>✦ 4枚の公式キービジュアル・陣営ポスターはクリックで額装拡大表示できます</span>
                   <button type="button" data-nav-target="sec-about" class="nav-scroll-btn text-[#d6c6a5] hover:underline font-semibold">
-                    世界観・三陣営の詳細へ ↓
+                    ラウンジ仕様・世界観へ ↓
                   </button>
                 </div>
               </div>
@@ -623,43 +837,134 @@
     </section>
 
     <!-- ==========================================
-         2. コンセプト (About)
+         2. コンセプト＆ラウンジ案内 (About & Salon Hospitality Guide)
          ========================================== -->
-    <section id="sec-about" class="page-section py-16 sm:py-24 border-b border-[#b8a378]/25 relative overflow-hidden">
+    <section id="sec-about" class="page-section py-20 sm:py-28 border-b border-[#b8a378]/30 relative overflow-hidden">
       <!-- Section Ambient Texture Overlay (Marble + Diagonal Light Leak) -->
       <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <img id="aboutBgTexImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt=""
-             class="w-full h-full object-cover opacity-[0.22] mix-blend-screen animate-flare-a">
-        <div class="absolute inset-0 bg-gradient-to-b from-[#08070a]/85 via-transparent to-[#08070a]/90"></div>
+             class="w-full h-full object-cover opacity-[0.24] mix-blend-screen animate-flare-a">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#070609]/88 via-transparent to-[#070609]/92"></div>
       </div>
-      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll">
-        <div class="text-center max-w-3xl mx-auto mb-14">
-          <span class="font-display text-xs tracking-[0.3em] text-[#b8a378] uppercase">WORLDVIEW</span>
-          <h2 class="font-serif-jp text-2xl sm:text-4xl font-bold text-[#ebe6dc] mt-2">
-            魔法少女と悪のノクターンサロン Rivelliaの世界観
-          </h2>
-          <div class="ornament-divider my-5">
-            <span class="text-[#b8a378] text-xs">✦</span>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal-on-scroll space-y-16">
+        <!-- Editorial Worldview Statement -->
+        <div class="salon-double-frame p-7 sm:p-12 lg:p-16">
+          <span class="salon-corner-tl"></span>
+          <span class="salon-corner-tr"></span>
+          <span class="salon-corner-bl"></span>
+          <span class="salon-corner-br"></span>
+
+          <div class="text-center max-w-3xl mx-auto">
+            <span class="font-display text-xs tracking-[0.36em] text-[#b8a378] uppercase">SALON PHILOSOPHY &amp; WORLDVIEW</span>
+            <h2 class="font-serif-jp text-2xl sm:text-4xl font-bold text-[#ede5d5] mt-2 tracking-wider">
+              魔法少女と悪のノクターンサロン Rivelliaの世界観
+            </h2>
+            <div class="ornament-divider my-5">
+              <span class="text-[#b8a378] text-xs">✦</span>
+            </div>
           </div>
-          <div class="reading-prose mx-auto text-left mt-6 bg-[#100e15]/95 p-7 sm:p-10 rounded-3xl border border-[#b8a378]/25">
+
+          <div class="reading-prose mx-auto text-left mt-6 bg-[#0b0a0f]/90 p-7 sm:p-10 border border-[#b8a378]/30 shadow-inner">
             <p>「このサロンでは、魔法少女も悪も、同じ夜に集います。光が正しいわけでもなく、闇が間違っているわけでもない。ここでは、それぞれの在り方が“夜”として並び立つだけです。」</p>
             <p>交わされた言葉、揺れた心、ふと逸れた視線や、沈黙の間。そういう小さなものが積み重なって、このサロンの夜は形になります。笑っていたい夜も、誰にも言えないことを吐き出したい夜も、ここではどちらも許されます。</p>
           </div>
-        </div>
 
-        <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <h3 class="font-serif-jp text-xl sm:text-2xl font-bold text-[#e6e0d4] flex items-center gap-2">
-              <span class="text-[#b8a378]">◆</span> 三つの陣営カテゴリー
-            </h3>
+          <!-- Real-World High-End Lounge Experience Pillars (01. SPACE / 02. HOSPITALITY / 03. ETIQUETTE) -->
+          <div class="mt-12 pt-10 border-t border-[#b8a378]/25">
+            <div class="text-center mb-8">
+              <span class="font-display text-[11px] tracking-[0.35em] text-[#b8a378] uppercase">THE NOCTURNE LOUNGE EXPERIENCE</span>
+              <h3 class="font-serif-jp text-xl sm:text-2xl font-bold text-[#ede5d5] mt-1 tracking-wider">
+                サロンのお過ごし方・空間仕様
+              </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Pillar I -->
+              <div class="p-6 bg-[#0c0b10]/95 border border-[#b8a378]/30 relative">
+                <div class="flex items-center justify-between border-b border-[#b8a378]/20 pb-3 mb-4">
+                  <span class="font-display text-xs tracking-[0.28em] text-[#b8a378]">01 / SANCTUARY</span>
+                  <span class="text-[#b8a378] text-xs">✦</span>
+                </div>
+                <h4 class="font-serif-jp text-base sm:text-lg font-bold text-[#ede5d5] mb-2.5">休戦と対話の緩衝ラウンジ</h4>
+                <p class="font-serif-jp text-xs sm:text-sm text-[#b0a898] leading-relaxed">
+                  扉を潜った瞬間から、立場や陣営の垣根を越えた「一人の夜の客」として迎えられます。宿敵と隣り合ってグラスを傾けるも、静かに耳を傾けるも自由です。
+                </p>
+              </div>
+
+              <!-- Pillar II -->
+              <div class="p-6 bg-[#0c0b10]/95 border border-[#b8a378]/30 relative">
+                <div class="flex items-center justify-between border-b border-[#b8a378]/20 pb-3 mb-4">
+                  <span class="font-display text-xs tracking-[0.28em] text-[#b8a378]">02 / DIALOGUE &amp; RP</span>
+                  <span class="text-[#b8a378] text-xs">✦</span>
+                </div>
+                <h4 class="font-serif-jp text-base sm:text-lg font-bold text-[#ede5d5] mb-2.5">物語を紡ぐロールプレイ</h4>
+                <p class="font-serif-jp text-xs sm:text-sm text-[#b0a898] leading-relaxed">
+                  魔法少女・悪・中立それぞれの背景を纏ったキャストたちが在籍。華やかな雑談から、夜ならではの密談・独白まで、深みのある対話をお愉しみいただけます。
+                </p>
+              </div>
+
+              <!-- Pillar III -->
+              <div class="p-6 bg-[#0c0b10]/95 border border-[#b8a378]/30 relative">
+                <div class="flex items-center justify-between border-b border-[#b8a378]/20 pb-3 mb-4">
+                  <span class="font-display text-xs tracking-[0.28em] text-[#b8a378]">03 / CHRONICLE</span>
+                  <span class="text-[#b8a378] text-xs">✦</span>
+                </div>
+                <h4 class="font-serif-jp text-base sm:text-lg font-bold text-[#ede5d5] mb-2.5">記憶と余韻のアーカイブ</h4>
+                <p class="font-serif-jp text-xs sm:text-sm text-[#b0a898] leading-relaxed">
+                  各夜の営業記録や、世界観タイムライン（<span class="text-[#d6c6a5]">#リベリア_VRC</span>）を通じて、サロンで交わされた言葉や写真の余韻をいつでも振り返ることができます。
+                </p>
+              </div>
+            </div>
+
+            <!-- Authentic Luxury Lounge Specification Plaque (Hotel Spec Table) -->
+            <div class="mt-8 bg-[#09080c]/95 border border-[#b8a378]/35 p-6 sm:p-8">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[#b8a378]/25 pb-3 mb-5">
+                <span class="font-display text-xs tracking-[0.3em] text-[#d6c6a5] uppercase">SALON SPECIFICATION &amp; INFORMATION</span>
+                <span class="font-serif-jp text-xs text-[#9e9689]">サロン基本要項</span>
+              </div>
+              <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-3 text-xs sm:text-sm font-serif-jp">
+                <div class="flex items-baseline justify-between py-2 border-b border-[#b8a378]/15 gap-4">
+                  <dt class="text-[#8a8275] shrink-0">サロン名称</dt>
+                  <dd class="text-[#ede5d5] font-semibold text-right">魔法少女と悪のノクターンサロン Rivellia（リベリア）</dd>
+                </div>
+                <div class="flex items-baseline justify-between py-2 border-b border-[#b8a378]/15 gap-4">
+                  <dt class="text-[#8a8275] shrink-0">プラットフォーム</dt>
+                  <dd class="text-[#ede5d5] text-right">VRChat（ロールプレイ・サロンイベント）</dd>
+                </div>
+                <div class="flex items-baseline justify-between py-2 border-b border-[#b8a378]/15 gap-4">
+                  <dt class="text-[#8a8275] shrink-0">主催 / オーナー</dt>
+                  <dd class="text-[#d6c6a5] font-semibold text-right">るんるんなかんがるー</dd>
+                </div>
+                <div class="flex items-baseline justify-between py-2 border-b border-[#b8a378]/15 gap-4">
+                  <dt class="text-[#8a8275] shrink-0">公式ハッシュタグ</dt>
+                  <dd class="text-right">
+                    <a href="https://x.com/search?q=%23%E3%83%AA%E3%83%99%E3%83%AA%E3%82%A2_VRC" target="_blank" rel="noopener noreferrer" class="text-[#b8a378] hover:text-[#ede5d5] underline font-semibold">#リベリア_VRC ↗</a>
+                  </dd>
+                </div>
+              </dl>
+            </div>
           </div>
-          <button id="openFactionEditorBtn" type="button" class="hidden admin-only-control inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#1a1723] hover:bg-[#252131] text-xs font-semibold text-[#d6c6a5] border border-[#b8a378]/40 transition">
-            <span>◇ 陣営名を一括変更</span>
-          </button>
         </div>
 
-        <div id="factionCardsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- Populated dynamically by renderFactions() -->
+        <!-- Three Factions Showcase Header & Cards -->
+        <div>
+          <div class="mb-8 flex flex-wrap items-end justify-between gap-4 border-b border-[#b8a378]/25 pb-4">
+            <div>
+              <span class="font-display text-xs tracking-[0.32em] text-[#b8a378] uppercase">THE THREE CHAMBERS</span>
+              <h3 class="font-serif-jp text-xl sm:text-3xl font-bold text-[#ede5d5] flex items-center gap-2.5 mt-1">
+                <span class="text-[#b8a378] text-base">◆</span>
+                <span>サロンを構成する三つの陣営</span>
+              </h3>
+            </div>
+            <button id="openFactionEditorBtn" type="button" class="hidden admin-only-control inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#1a1723] hover:bg-[#252131] text-xs font-semibold text-[#d6c6a5] border border-[#b8a378]/40 transition">
+              <span>◇ 陣営名を一括変更</span>
+            </button>
+          </div>
+
+          <div id="factionCardsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-7">
+            <!-- Populated dynamically by renderFactions() -->
+          </div>
         </div>
       </div>
     </section>
@@ -2877,40 +3182,46 @@
         const f = state.config.factions[fKey];
         const count = state.casts.filter(c => c.factionId === fKey).length;
         const posterSrc = (POSTER_IMAGES && POSTER_IMAGES[fKey]) ? POSTER_IMAGES[fKey] : "";
+        const chamberRoman = fKey === "faction_a" ? "CHAMBER I" : (fKey === "faction_b" ? "CHAMBER II" : "CHAMBER III");
         const posterHtml = posterSrc ? `
-          <div class="mb-5 relative group overflow-hidden rounded-2xl border bg-[#08070a] cursor-pointer shadow-lg"
+          <div class="mb-5 luxury-poster-frame cursor-pointer group"
                style="border-color:${escapeHtml(f.badgeBorder)};"
                data-poster-key="${escapeHtml(fKey)}"
                data-poster-title="Rivellia 公式ポスター — ${escapeHtml(f.name)}">
-            <img src="${posterSrc}" alt="${escapeHtml(f.name)} 公式ポスター" class="w-full aspect-[3/5] object-cover group-hover:scale-[1.02] transition duration-500">
-            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-3 flex items-center justify-between">
-              <span class="text-[11px] font-serif-jp font-semibold text-[#ebe6dc]">${escapeHtml(f.name)} 公式ポスター</span>
-              <span class="px-2.5 py-0.5 rounded-lg bg-black/75 border border-[#b8a378]/45 text-[11px] text-[#d6c6a5]">◇ 拡大表示</span>
+            <div class="relative overflow-hidden border border-[#b8a378]/25 bg-[#060508]">
+              <img src="${posterSrc}" alt="${escapeHtml(f.name)} 公式ポスター" class="w-full aspect-[3/5] object-cover group-hover:scale-[1.03] transition duration-700">
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent p-3.5 flex items-center justify-between">
+                <span class="text-[11px] font-serif-jp font-semibold text-[#ede5d5] tracking-wider">${escapeHtml(f.name)} 公式肖像画</span>
+                <span class="px-2.5 py-0.5 bg-black/80 border border-[#b8a378]/45 text-[10px] text-[#d6c6a5] font-serif-jp">◇ 額装拡大</span>
+              </div>
             </div>
           </div>
         ` : "";
         return `
-          <div class="card-nocturne rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group">
+          <div class="salon-door-plaque p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden group" style="border-top: 2px solid ${escapeHtml(f.color)};">
             <div>
+              <div class="flex items-center justify-between text-[10px] font-display tracking-[0.28em] text-[#b8a378] border-b border-[#b8a378]/20 pb-2.5 mb-4">
+                <span>${chamberRoman}</span>
+                <span class="font-serif-jp text-xs" style="color:${escapeHtml(f.color)};">在籍 ${count}名</span>
+              </div>
               ${posterHtml}
-              <div class="flex items-center justify-between gap-2 mb-4">
-                <span class="px-3.5 py-1 rounded-sm text-xs font-semibold border"
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="px-3.5 py-1 rounded-sm text-xs font-serif-jp font-semibold border tracking-wider"
                       style="color:${escapeHtml(f.color)}; background:${escapeHtml(f.badgeBg)}; border-color:${escapeHtml(f.badgeBorder)};">
                   ${escapeHtml(f.name)}
                 </span>
-                <span class="text-xs text-[#8a8275]">${count}名</span>
               </div>
-              <h4 class="font-serif-jp text-lg sm:text-xl font-bold text-[#ebe6dc] mt-1">${escapeHtml(f.concept)}</h4>
-              <p class="text-xs sm:text-sm text-[#b0a898] leading-relaxed mt-3">${escapeHtml(f.description)}</p>
+              <h4 class="font-serif-jp text-lg sm:text-xl font-bold text-[#ede5d5] mt-1 tracking-wide">${escapeHtml(f.concept)}</h4>
+              <p class="font-serif-jp text-xs sm:text-sm text-[#b0a898] leading-relaxed mt-3">${escapeHtml(f.description)}</p>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-[#b8a378]/15 flex items-center justify-between gap-2">
+            <div class="mt-6 pt-4 border-t border-[#b8a378]/20 flex items-center justify-between gap-2">
               <button type="button" data-poster-key="${escapeHtml(fKey)}" data-poster-title="Rivellia 公式ポスター — ${escapeHtml(f.name)}"
-                      class="px-3 py-2 rounded-xl bg-[#181621] hover:bg-[#252131] text-xs text-[#b0a898] hover:text-[#d6c6a5] border border-[#b8a378]/25 transition">
+                      class="px-3 py-2 bg-[#14121b] hover:bg-[#221e2d] text-xs font-serif-jp text-[#b0a898] hover:text-[#d6c6a5] border border-[#b8a378]/30 transition">
                 ◇ ポスター拡大
               </button>
-              <button type="button" data-jump-faction="${escapeHtml(f.id)}" class="jump-faction-btn px-4 py-2 rounded-xl bg-[#b8a378]/15 hover:bg-[#b8a378] text-xs font-semibold text-[#d6c6a5] hover:text-[#0b0a0e] border border-[#b8a378]/35 transition inline-flex items-center gap-1.5">
-                <span>${escapeHtml(f.name)}の一覧を見る</span>
+              <button type="button" data-jump-faction="${escapeHtml(f.id)}" class="jump-faction-btn px-4 py-2 bg-[#b8a378]/15 hover:bg-[#b8a378] text-xs font-serif-jp font-semibold text-[#d6c6a5] hover:text-[#0b0a0e] border border-[#b8a378]/45 transition inline-flex items-center gap-1.5">
+                <span>${escapeHtml(f.name)}名鑑へ</span>
                 <span>→</span>
               </button>
             </div>
@@ -3152,52 +3463,58 @@
           const posY = (c.thumbPosY !== undefined && c.thumbPosY !== null) ? Number(c.thumbPosY) : 15;
           const scale = ((c.thumbScale !== undefined && c.thumbScale !== null) ? Number(c.thumbScale) : 100) / 100;
           const imgBlockHtml = c.image
-            ? `<div class="mb-4 overflow-hidden rounded-2xl border border-[#b8a378]/30 bg-[#09080c]">
-                 <img src="${escapeHtml(c.image)}" alt="${escapeHtml(c.name)}" style="object-position: ${posX}% ${posY}%; transform: scale(${scale}); transform-origin: ${posX}% ${posY}%;" class="w-full h-64 object-cover max-w-full transition duration-300">
+            ? `<div class="mb-4 p-1.5 bg-[#08070b] border border-[#b8a378]/35 shadow-inner">
+                 <div class="overflow-hidden relative bg-[#060508]">
+                   <img src="${escapeHtml(c.image)}" alt="${escapeHtml(c.name)}" style="object-position: ${posX}% ${posY}%; transform: scale(${scale}); transform-origin: ${posX}% ${posY}%;" class="w-full h-64 object-cover max-w-full transition duration-500">
+                   <div class="pointer-events-none absolute inset-0 shadow-[inset_0_0_24px_rgba(0,0,0,0.65)]"></div>
+                 </div>
                </div>`
             : "";
           return `
-            <article class="card-nocturne cast-card-lift rounded-3xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer group"
+            <article class="salon-door-plaque cast-card-lift p-6 sm:p-7 flex flex-col justify-between cursor-pointer group"
+                     style="border-top: 2px solid ${escapeHtml(f.color)};"
                      data-open-cast="${escapeHtml(c.id)}">
               <div class="space-y-4">
-                ${imgBlockHtml}
-                <!-- Top Header: Entry No + Faction Badge + Actor + X Icon Only -->
-                <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#b8a378]/15">
+                <!-- Top Brass Folio Header: Entry No + Faction Badge + Actor + X Icon -->
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#b8a378]/20">
                   <div class="flex items-center gap-2">
-                    <span class="font-display text-xs font-bold px-2.5 py-0.5 rounded-md bg-[#1d1a26] text-[#b8a378] border border-[#b8a378]/30">
+                    <span class="font-display text-xs tracking-widest font-bold px-2.5 py-0.5 bg-[#17141f] text-[#d6c6a5] border border-[#b8a378]/40">
                       No.${String(c.no).padStart(2, "0")}
                     </span>
-                    <span class="px-3 py-0.5 rounded-sm text-xs font-semibold border"
+                    <span class="px-3 py-0.5 text-xs font-serif-jp font-semibold border tracking-wider"
                           style="color:${escapeHtml(f.color)}; background:${escapeHtml(f.badgeBg)}; border-color:${escapeHtml(f.badgeBorder)};">
                       ${escapeHtml(f.name)}
                     </span>
                   </div>
                   <div class="flex items-center gap-2">
-                    <span class="text-xs text-[#b0a898]">
-                      演者：<strong class="text-[#d6c6a5]">${escapeHtml(c.actor)}</strong>
+                    <span class="text-xs font-serif-jp text-[#b0a898]">
+                      演者：<strong class="text-[#d6c6a5] font-semibold">${escapeHtml(c.actor)}</strong>
                     </span>
                     ${xIconHtml}
                   </div>
                 </div>
 
+                ${imgBlockHtml}
+
                 <!-- Character Name -->
                 <div>
-                  <h3 class="font-serif-jp text-xl sm:text-2xl font-bold text-[#ebe6dc] group-hover:text-[#d6c6a5] transition leading-snug">
+                  <span class="block font-display text-[9px] tracking-[0.28em] text-[#b8a378]/80 uppercase">SALON CAST PORTFOLIO</span>
+                  <h3 class="font-serif-jp text-xl sm:text-2xl font-bold text-[#ede5d5] group-hover:text-[#d6c6a5] transition leading-snug mt-0.5 tracking-wide">
                     ${escapeHtml(c.name)}
                   </h3>
                 </div>
 
                 <!-- Signature Quote -->
-                <blockquote class="p-4 rounded-2xl bg-[#0c0b10] border-l-2 border-[#b8a378] font-serif-jp text-xs sm:text-sm text-[#e6e0d4] leading-relaxed line-clamp-3">
+                <blockquote class="p-4 bg-[#09080c]/95 border-l-2 border-[#b8a378] font-serif-jp text-xs sm:text-sm text-[#e6e0d4] leading-relaxed line-clamp-3">
                   ${escapeHtml(c.quote)}
                 </blockquote>
               </div>
 
               <!-- Card Footer CTA -->
-              <div class="pt-5 mt-5 border-t border-[#b8a378]/15 flex items-center gap-2">
+              <div class="pt-5 mt-5 border-t border-[#b8a378]/20 flex items-center gap-2">
                 <button type="button" data-open-cast="${escapeHtml(c.id)}"
-                        class="flex-1 py-2.5 px-4 rounded-xl bg-[#b8a378]/15 group-hover:bg-[#b8a378] text-[#d6c6a5] group-hover:text-[#0b0a0e] border border-[#b8a378]/40 font-semibold text-xs sm:text-sm transition flex items-center justify-center gap-2">
-                  <span>自己紹介文を読む</span>
+                        class="flex-1 py-2.5 px-4 bg-[#b8a378]/12 group-hover:bg-[#b8a378] text-[#d6c6a5] group-hover:text-[#0b0a0e] border border-[#b8a378]/45 font-serif-jp font-semibold text-xs sm:text-sm tracking-wider transition flex items-center justify-center gap-2">
+                  <span>自己紹介文を紐解く</span>
                   <span>→</span>
                 </button>
                 ${editBtnHtml}
