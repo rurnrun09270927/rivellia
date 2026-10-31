@@ -445,6 +445,167 @@
       cursor: pointer;
     }
 
+
+    /* =========================================================================
+       HORIZONTAL CAST GALLERY RACK (HOVER-TO-EXPAND ACCORDION STAGE)
+       Inspired by interactive clothing/gallery rack: all casts hang side-by-side
+       in a horizontal scrollable rail; hovering any item expands its full profile.
+       ========================================================================= */
+    .cast-rack-stage-bg {
+      background:
+        radial-gradient(ellipse 75% 58% at 50% 36%, rgba(44, 38, 56, 0.78) 0%, rgba(12, 10, 17, 0.96) 72%, rgba(7, 6, 10, 1) 100%);
+      box-shadow:
+        0 30px 80px -20px rgba(0, 0, 0, 0.96),
+        inset 0 1px 0 rgba(214, 198, 165, 0.25),
+        inset 0 -36px 70px rgba(0, 0, 0, 0.85);
+    }
+
+    #castRackScrollViewport {
+      scrollbar-width: thin;
+      scrollbar-color: #b8a378 #0b0910;
+      scroll-behavior: smooth;
+    }
+    #castRackScrollViewport::-webkit-scrollbar {
+      height: 7px;
+    }
+    #castRackScrollViewport::-webkit-scrollbar-track {
+      background: rgba(10, 9, 14, 0.9);
+    }
+    #castRackScrollViewport::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, #786848, #d6c6a5, #786848);
+      border-radius: 2px;
+    }
+
+    .cast-rack-item {
+      position: relative;
+      width: 96px;
+      height: 450px;
+      flex-shrink: 0;
+      transition:
+        width 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.35s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    @media (max-width: 640px) {
+      .cast-rack-item {
+        width: 78px;
+        height: 410px;
+      }
+    }
+
+    .cast-rack-item .rack-card-shell {
+      width: 100%;
+      height: 390px;
+      margin-top: 22px;
+      background: linear-gradient(175deg, rgba(22, 19, 30, 0.95) 0%, rgba(9, 8, 13, 0.98) 100%);
+      border: 1px solid rgba(184, 163, 120, 0.32);
+      box-shadow: 0 18px 38px -10px rgba(0, 0, 0, 0.92);
+      transform-origin: center top;
+      transform: perspective(950px) rotateY(-20deg) scale(0.93);
+      filter: brightness(0.62) saturate(0.85);
+      transition:
+        transform 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.38s ease,
+        border-color 0.38s ease,
+        box-shadow 0.38s ease;
+      overflow: hidden;
+      display: flex;
+    }
+
+    @media (max-width: 640px) {
+      .cast-rack-item .rack-card-shell {
+        height: 350px;
+      }
+    }
+
+    /* Expanded / Hovered State on the Rack */
+    .cast-rack-item.is-rack-hovered {
+      width: 590px;
+      z-index: 25;
+    }
+
+    @media (max-width: 768px) {
+      .cast-rack-item.is-rack-hovered {
+        width: min(88vw, 460px);
+      }
+    }
+
+    .cast-rack-item.is-rack-hovered .rack-card-shell {
+      transform: perspective(950px) rotateY(0deg) scale(1);
+      filter: brightness(1.03) saturate(1.04);
+      border-color: rgba(214, 198, 165, 0.85);
+      box-shadow:
+        0 28px 65px -12px rgba(0, 0, 0, 0.98),
+        0 0 32px -4px rgba(184, 163, 120, 0.28);
+    }
+
+    /* Portrait Pane inside Rack Item */
+    .cast-rack-item .rack-portrait-pane {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      flex-shrink: 0;
+      transition: width 0.46s cubic-bezier(0.22, 1, 0.36, 1);
+      overflow: hidden;
+      background: #07060a;
+    }
+
+    .cast-rack-item.is-rack-hovered .rack-portrait-pane {
+      width: 230px;
+      border-right: 1px solid rgba(184, 163, 120, 0.28);
+    }
+
+    @media (max-width: 640px) {
+      .cast-rack-item.is-rack-hovered .rack-portrait-pane {
+        width: 145px;
+      }
+    }
+
+    /* Vertical Spine Name (Visible when collapsed, fades out when expanded) */
+    .cast-rack-item .rack-collapsed-spine {
+      opacity: 1;
+      transition: opacity 0.22s ease;
+    }
+    .cast-rack-item.is-rack-hovered .rack-collapsed-spine {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Full Profile Details Pane (Fades in when hovered/expanded) */
+    .cast-rack-item .rack-profile-pane {
+      opacity: 0;
+      transform: translateX(12px);
+      transition: opacity 0.32s ease 0.08s, transform 0.32s ease 0.08s;
+      pointer-events: none;
+      width: 358px;
+      flex-shrink: 0;
+    }
+    @media (max-width: 640px) {
+      .cast-rack-item .rack-profile-pane {
+        width: calc(min(88vw, 460px) - 145px);
+      }
+    }
+    .cast-rack-item.is-rack-hovered .rack-profile-pane {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    /* Bottom Floating Nameplate Pill (Yellow/Gold label like HARNESS TEE in reference video) */
+    .cast-rack-item .rack-bottom-nameplate {
+      opacity: 0;
+      transform: translate(-50%, 6px) scale(0.92);
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+    .cast-rack-item.is-rack-hovered .rack-bottom-nameplate {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+    }
+
   </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-[#b8a378]/30 selection:text-[#ede5d5] relative">
@@ -1221,8 +1382,9 @@
             </div>
             <div class="h-4 w-[1px] bg-[#b8a378]/20 hidden sm:block"></div>
             <div class="inline-flex rounded-xl bg-[#0b0a0e] p-0.5 border border-[#b8a378]/20">
-              <button id="viewGridBtn" type="button" class="px-3 py-1 rounded-lg text-xs font-medium bg-[#b8a378]/25 text-[#d6c6a5]">カード表示</button>
-              <button id="viewListBtn" type="button" class="px-3 py-1 rounded-lg text-xs font-medium text-[#b0a898] hover:text-[#e6e0d4]">全文リスト表示</button>
+              <button id="viewRackBtn" type="button" class="px-3 py-1 rounded-lg text-xs font-semibold bg-[#b8a378] text-[#0b0a0e] transition">✦ ラック展開（横スクロール）</button>
+              <button id="viewGridBtn" type="button" class="px-3 py-1 rounded-lg text-xs font-medium text-[#b0a898] hover:text-[#e6e0d4] transition">カード表示</button>
+              <button id="viewListBtn" type="button" class="px-3 py-1 rounded-lg text-xs font-medium text-[#b0a898] hover:text-[#e6e0d4] transition">全文リスト表示</button>
             </div>
           </div>
         </div>
@@ -2610,7 +2772,8 @@
       selectedSubFaction: "ALL",
       selectedActor: "ALL",
       searchQuery: "",
-      viewMode: "grid",
+      viewMode: "rack",
+      rackHoveredCastId: null,
       fontScale: "normal",
       currentPage: 1,
       pageSize: 9,
@@ -3988,64 +4151,96 @@
       });
     }
 
+    // Built-in preview sample casts ONLY used when state.casts is empty (0 registered casts) so the user can test the horizontal hover rack immediately
+    const RACK_EMPTY_PREVIEW_CASTS = [
+      { id: "demo-01a", no: 1, name: "ルル", actor: "るんるんなかんがるー", factionId: "faction_c", quote: "「ようこそリベリアへ。光も闇も、ここでは同じ夜の客だよ」", xUrl: "", image: "", story: ["魔法少女と悪のノクターンサロン《Rivellia》のオーナーであり、光と闇の狭間を見守る審判役。", "サロンでは争いを禁じ、訪れるすべての者に穏やかな夜のグラスを差し出す。"] },
+      { id: "demo-01b", no: 1, name: "ルブラン", actor: "るんるんなかんがるー", factionId: "faction_a", quote: "「光の側面として、今宵の願いに耳を傾けましょう」", xUrl: "", image: "", story: ["ルルの光の側面である魔法少女の姿。淡い桜色の輝きを纏い、客人の純粋な想いや祈りに寄り添う。"] },
+      { id: "demo-01c", no: 1, name: "ルノア", actor: "るんるんなかんがるー", factionId: "faction_b", quote: "「影の側面こそ、夜の本音にふさわしいと思わない？」", xUrl: "", image: "", story: ["ルルの影の側面である悪の姿。深紅の微笑みとともに、誰にも言えない秘密や甘美な雑談を愉しむ。"] },
+      { id: "demo-02", no: 2, name: "ジャバウォック", actor: "アルテ・ニル", factionId: "faction_b", quote: "「君の物語、次はどんな絶望（ページ）をめくろうか？」", xUrl: "", image: "", story: ["物語の怪物「Story Terror」。語り手として世界観の中へ引き込むようにロールプレイで心を鷲掴む。"] },
+      { id: "demo-03", no: 3, name: "ましろ", actor: "くるせ", factionId: "faction_a", quote: "「あのね、わたしと一緒に戦ってくれる人、探してるんだ…！」", xUrl: "", image: "", story: ["のんびりした話し方で契約者や仲間を探している魔法少女。聞き役も雑談も一生懸命お話します。"] },
+      { id: "demo-04", no: 4, name: "ラズール", actor: "らうりも", factionId: "faction_a", quote: "「蒼き星の導きがあらんことを。今夜はゆっくり話そうか」", xUrl: "", image: "", story: ["冷静沈着でありながら、サロンでは柔和な表情を見せる魔法少女。"] },
+      { id: "demo-05", no: 5, name: "ラヴィ", actor: "syubii", factionId: "faction_a", quote: "「あなたの願い、わたしにぜんぶ教えてくれる？」", xUrl: "", image: "", story: ["世界観に沿った雑談や、相手の願い・やりたい事を聞くのが好きな魔法少女。"] },
+      { id: "demo-06", no: 6, name: "カーミラ", actor: "Reipercent", factionId: "faction_b", quote: "「宵闇のグラスより、貴方の鼓動のほうがずっと甘美ね」", xUrl: "", image: "", story: ["深淵の夜を統べる吸血鬼。重めの愛と気品ある佇まいで客人を魅了する。"] },
+      { id: "demo-07", no: 7, name: "ヴォイニッチ", actor: "もりふく", factionId: "faction_b", quote: "「実に興味深い！貴方の物語も研究対象に加えていいかな？」", xUrl: "", image: "", story: ["客人のストーリーを引き出し、助手へ勧誘する狂研究者。"] },
+      { id: "demo-08", no: 8, name: "トア", actor: "××× #01", factionId: "faction_c", quote: "「扉の向こう側へ行く準備はできた？」", xUrl: "", image: "", story: ["世界をつなぐ扉を開閉できる境界の案内人。普段は気ままにサロンで過ごしている。"] }
+    ];
+
+    function syncCastViewModeButtons() {
+      const rackBtn = document.getElementById("viewRackBtn");
+      const gridBtn = document.getElementById("viewGridBtn");
+      const listBtn = document.getElementById("viewListBtn");
+      const pageSizeSel = document.getElementById("pageSizeSelect");
+      const activeCls = "px-3 py-1 rounded-lg text-xs font-semibold bg-[#b8a378] text-[#0b0a0e] transition";
+      const idleCls = "px-3 py-1 rounded-lg text-xs font-medium text-[#b0a898] hover:text-[#e6e0d4] transition";
+      if (rackBtn) rackBtn.className = state.viewMode === "rack" ? activeCls : idleCls;
+      if (gridBtn) gridBtn.className = state.viewMode === "grid" ? activeCls : idleCls;
+      if (listBtn) listBtn.className = state.viewMode === "list" ? activeCls : idleCls;
+      if (pageSizeSel) {
+        pageSizeSel.classList.toggle("hidden", state.viewMode === "rack");
+      }
+    }
+
     function renderCasts() {
+      syncCastViewModeButtons();
       const container = document.getElementById("castGridContainer");
       const statusEl = document.getElementById("castFilterStatus");
       const topPagEl = document.getElementById("castPaginationTop");
       const bottomPagEl = document.getElementById("castPaginationBottom");
-      const filtered = getFilteredCasts();
+
+      const isUsingEmptyDemo = state.casts.length === 0;
+      const sourceList = isUsingEmptyDemo ? RACK_EMPTY_PREVIEW_CASTS : state.casts;
+
+      const filtered = sourceList.filter(c => {
+        const matchesFaction = state.selectedFaction === "ALL" || c.factionId === state.selectedFaction;
+        if (!matchesFaction) return false;
+        if (!isUsingEmptyDemo && state.selectedActor !== "ALL" && c.actor !== state.selectedActor) {
+          return false;
+        }
+        if (!state.searchQuery.trim()) return true;
+        const q = state.searchQuery.trim().toLowerCase();
+        const hay = [
+          c.name,
+          c.actor,
+          c.rawFaction || "",
+          c.quote,
+          ...(c.story || [])
+        ].join(" ").toLowerCase();
+        return hay.includes(q);
+      });
 
       const totalItems = filtered.length;
-      const totalPages = Math.max(1, Math.ceil(totalItems / state.pageSize));
-      if (state.currentPage > totalPages) state.currentPage = totalPages;
-
-      const startIdx = (state.currentPage - 1) * state.pageSize;
-      const pagedCasts = filtered.slice(startIdx, startIdx + state.pageSize);
-
       const factionLabel = state.selectedFaction === "ALL"
         ? "全カテゴリー"
         : `${state.config.factions[state.selectedFaction]?.name || ""}`;
 
-      const rangeText = totalItems > 0
-        ? `${startIdx + 1}〜${Math.min(totalItems, startIdx + state.pageSize)}名目（全${totalItems}名）`
-        : "0名";
+      if (state.viewMode === "rack") {
+        // In Rack Mode, ALL filtered casts are displayed on a single continuous horizontal scrolling rail
+        if (topPagEl) topPagEl.innerHTML = "";
+        if (bottomPagEl) bottomPagEl.innerHTML = "";
+        statusEl.textContent = `${factionLabel}：全${totalItems}名を横スクロール表示中（カーソルを合わせるとプロフィールが展開します）`
+          + (state.selectedActor !== "ALL" ? `｜演者: ${state.selectedActor}` : "")
+          + (state.searchQuery ? `｜検索: "${state.searchQuery}"` : "");
+      } else {
+        const totalPages = Math.max(1, Math.ceil(totalItems / state.pageSize));
+        if (state.currentPage > totalPages) state.currentPage = totalPages;
+        const startIdx = (state.currentPage - 1) * state.pageSize;
+        const rangeText = totalItems > 0
+          ? `${startIdx + 1}〜${Math.min(totalItems, startIdx + state.pageSize)}名目（全${totalItems}名）`
+          : "0名";
 
-      statusEl.textContent = `${factionLabel}：${rangeText}`
-        + (state.selectedActor !== "ALL" ? `｜演者: ${state.selectedActor}` : "")
-        + (state.searchQuery ? `｜検索: "${state.searchQuery}"` : "");
+        statusEl.textContent = `${factionLabel}：${rangeText}`
+          + (state.selectedActor !== "ALL" ? `｜演者: ${state.selectedActor}` : "")
+          + (state.searchQuery ? `｜検索: "${state.searchQuery}"` : "");
 
-      const pagHtml = buildPaginationHtml(totalItems, totalPages);
-      if (topPagEl) {
-        topPagEl.innerHTML = pagHtml;
-        bindPaginationButtons(topPagEl);
-      }
-      if (bottomPagEl) {
-        bottomPagEl.innerHTML = pagHtml;
-        bindPaginationButtons(bottomPagEl);
-      }
-
-      if (state.casts.length === 0) {
-        container.className = "grid grid-cols-1 gap-6";
-        container.innerHTML = `
-          <div class="card-nocturne rounded-3xl p-10 sm:p-14 text-center space-y-4">
-            <p class="font-serif-jp text-lg sm:text-xl text-[#d6c6a5]">現在登録されているキャストはいません</p>
-            <p class="text-xs sm:text-sm text-[#9e9689]">管理者ログイン後、管理画面からキャスト（キャスト名・カテゴリー・演者名・Xリンク・一言セリフ・画像・自己紹介文）を新規登録できます。</p>
-            <div class="pt-2">
-              <button id="emptyStateRegisterCastBtn" type="button" class="px-6 py-3 rounded-xl bg-gradient-to-r from-[#8c7853] via-[#b8a378] to-[#8c7853] text-[#0b0a0e] font-bold text-xs sm:text-sm hover:brightness-110 transition shadow-lg">
-                ${state.isAdminAuthenticated ? "＋ 新規キャストを登録する" : "🔒 管理者ログインしてキャストを登録する"}
-              </button>
-            </div>
-          </div>
-        `;
-        const empBtn = document.getElementById("emptyStateRegisterCastBtn");
-        if (empBtn) {
-          empBtn.addEventListener("click", () => {
-            state.editingCastId = "NEW";
-            openAdminModal("tab-add-cast");
-            loadCastIntoEditor("NEW");
-          });
+        const pagHtml = buildPaginationHtml(totalItems, totalPages);
+        if (topPagEl) {
+          topPagEl.innerHTML = pagHtml;
+          bindPaginationButtons(topPagEl);
         }
-        return;
+        if (bottomPagEl) {
+          bottomPagEl.innerHTML = pagHtml;
+          bindPaginationButtons(bottomPagEl);
+        }
       }
 
       if (filtered.length === 0) {
@@ -4077,6 +4272,371 @@
         return;
       }
 
+      // =========================================================
+      // VIEW MODE 1 (DEFAULT): INTERACTIVE HORIZONTAL CAST RACK
+      // Hovering any cast expands their card on the rack & reveals their full profile!
+      // All registered casts in the selection can be scrolled horizontally.
+      // =========================================================
+      if (state.viewMode === "rack") {
+        container.className = "block space-y-6";
+
+        if (!state.rackHoveredCastId || !filtered.some(c => c.id === state.rackHoveredCastId)) {
+          state.rackHoveredCastId = filtered[0].id;
+        }
+
+        const bgWatermarkTitle = state.selectedFaction === "faction_a" ? "magical / girls"
+                               : state.selectedFaction === "faction_b" ? "forces / of evil"
+                               : state.selectedFaction === "faction_c" ? "neutral / observers"
+                               : "cast / directory";
+
+        const demoNoticeHtml = isUsingEmptyDemo ? `
+          <div class="px-4 py-2.5 bg-[#161320]/95 border border-[#b8a378]/40 flex flex-wrap items-center justify-between gap-3 text-xs text-[#d6c6a5]">
+            <span>✦ 現在登録キャストが0名のため、<strong>横スクロール＆カーソル展開ラックの動作サンプル</strong>を表示しています（キャスト登録済みブラウザでは実際の在籍キャスト全員が並びます）。</span>
+            <button id="emptyStateRegisterCastBtn" type="button" class="px-3.5 py-1.5 bg-[#b8a378] text-[#08070a] font-bold text-xs hover:brightness-110 transition shrink-0">
+              ${state.isAdminAuthenticated ? "＋ 新規キャストを登録する" : "🔒 管理者ログインして登録・データ復元"}
+            </button>
+          </div>
+        ` : "";
+
+        const rackItemsHtml = filtered.map((c, idx) => {
+          const f = state.config.factions[c.factionId] || state.config.factions.faction_c;
+          const isHovered = c.id === state.rackHoveredCastId;
+          const noPad = String(c.no || (idx + 1)).padStart(2, "0");
+          const posX = (c.thumbPosX !== undefined && c.thumbPosX !== null) ? Number(c.thumbPosX) : 50;
+          const posY = (c.thumbPosY !== undefined && c.thumbPosY !== null) ? Number(c.thumbPosY) : 15;
+          const scale = ((c.thumbScale !== undefined && c.thumbScale !== null) ? Number(c.thumbScale) : 100) / 100;
+          const fallbackPoster = (POSTER_IMAGES && POSTER_IMAGES[c.factionId]) ? POSTER_IMAGES[c.factionId] : LOGO_DATA_URI;
+          const portraitSrc = c.image || c.detailImage || fallbackPoster;
+          const xIconHtml = buildXIconLinkHtml(c.xUrl);
+          const editBtnHtml = (!isUsingEmptyDemo && state.isAdminAuthenticated)
+            ? `<button type="button" data-edit-cast="${escapeHtml(c.id)}" class="card-edit-cast-btn px-3 py-1.5 bg-[#1d1a27] hover:bg-[#2b2739] text-[#d6c6a5] border border-[#b8a378]/40 text-[11px] font-semibold transition shrink-0">✎ 編集</button>`
+            : "";
+
+          const storyParagraphsHtml = (c.story || []).map(p => `<p class="mb-2 last:mb-0">${escapeHtml(p)}</p>`).join("");
+
+          return `
+            <div class="cast-rack-item ${isHovered ? "is-rack-hovered" : ""}"
+                 data-rack-cast-id="${escapeHtml(c.id)}"
+                 data-rack-index="${idx}">
+              <!-- Top Metallic Hanger Hook connected to the Horizontal Rail -->
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
+                <div class="w-3 h-2 rounded-t-full border-2 border-[#d6c6a5] border-b-0"></div>
+                <div class="w-[2px] h-3.5 bg-gradient-to-b from-[#e5d8bc] to-[#8c7853]"></div>
+              </div>
+
+              <!-- Expanding 3D Rack Card Shell -->
+              <div class="rack-card-shell" style="border-top: 2px solid ${escapeHtml(f.color)};">
+                <!-- Left / Spine Portrait Pane -->
+                <div class="rack-portrait-pane">
+                  <img src="${escapeHtml(portraitSrc)}"
+                       alt="${escapeHtml(c.name)}"
+                       style="object-position: ${posX}% ${posY}%; transform: scale(${scale}); transform-origin: ${posX}% ${posY}%;"
+                       class="w-full h-full object-cover max-w-full transition duration-500 ${c.image ? "" : "opacity-55"}">
+                  <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#060509] via-transparent to-[#060509]/55"></div>
+
+                  <!-- Top Entry No & Faction Dot (Always visible on hanger) -->
+                  <div class="absolute top-2.5 inset-x-2 flex items-center justify-between gap-1 z-10 pointer-events-none">
+                    <span class="px-1.5 py-0.5 bg-[#09080d]/90 border border-[#b8a378]/45 font-display text-[10px] font-bold text-[#d6c6a5] tracking-wider">
+                      No.${noPad}
+                    </span>
+                    <span class="w-2.5 h-2.5 rounded-full border border-black/60 shrink-0" style="background:${escapeHtml(f.color)};"></span>
+                  </div>
+
+                  <!-- Vertical Tategaki Spine Name (Visible when un-hovered on the rack) -->
+                  <div class="rack-collapsed-spine absolute inset-x-0 bottom-3 top-12 flex flex-col items-center justify-end pb-2 pointer-events-none">
+                    <div class="px-1.5 py-2 bg-[#07060a]/85 border border-[#b8a378]/30 backdrop-blur-[2px] max-h-[260px] overflow-hidden">
+                      <span class="font-serif-jp text-xs sm:text-sm font-bold text-[#ede5d5] tracking-[0.2em]" style="writing-mode: vertical-rl; text-orientation: upright;">
+                        ${escapeHtml(c.name.slice(0, 12))}
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Bottom Faction Ribbon inside Expanded Portrait -->
+                  <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
+                    <span class="px-2 py-0.5 text-[10px] font-serif-jp font-semibold border backdrop-blur-sm"
+                          style="color:${escapeHtml(f.color)}; background:rgba(8,7,11,0.85); border-color:${escapeHtml(f.badgeBorder)};">
+                      ${escapeHtml(f.name)}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Right Profile Details Pane (Revealed automatically on Cursor Hover!) -->
+                <div class="rack-profile-pane p-4 sm:p-5 flex flex-col justify-between bg-[#0c0a12]/95 text-left">
+                  <div class="space-y-3 min-h-0 flex-1 flex flex-col">
+                    <!-- Top Header: No + Faction + Performer + X Icon -->
+                    <div class="flex flex-wrap items-center justify-between gap-1.5 pb-2.5 border-b border-[#b8a378]/20">
+                      <div class="flex items-center gap-1.5">
+                        <span class="font-display text-[11px] font-bold px-2 py-0.5 bg-[#17141f] text-[#d6c6a5] border border-[#b8a378]/40">
+                          No.${noPad}
+                        </span>
+                        <span class="px-2.5 py-0.5 text-[11px] font-serif-jp font-semibold border"
+                              style="color:${escapeHtml(f.color)}; background:${escapeHtml(f.badgeBg)}; border-color:${escapeHtml(f.badgeBorder)};">
+                          ${escapeHtml(f.name)}
+                        </span>
+                      </div>
+                      <div class="flex items-center gap-1.5 text-[11px] text-[#b0a898]">
+                        <span>演者：</span>${renderActorBadgeOrTextHtml(c.actor, "card")}
+                        ${xIconHtml}
+                      </div>
+                    </div>
+
+                    <!-- Cast Name -->
+                    <div>
+                      <span class="block font-display text-[8.5px] tracking-[0.26em] text-[#b8a378] uppercase">SALON CAST PROFILE</span>
+                      <h3 class="font-serif-jp text-lg sm:text-2xl font-bold text-[#ede5d5] tracking-wide mt-0.5 leading-snug">
+                        ${escapeHtml(c.name)}
+                      </h3>
+                    </div>
+
+                    <!-- Quote -->
+                    <blockquote class="p-2.5 sm:p-3 bg-[#08070b] border-l-2 border-[#b8a378] font-serif-jp text-xs text-[#e6e0d4] leading-relaxed shrink-0">
+                      ${escapeHtml(c.quote)}
+                    </blockquote>
+
+                    <!-- Scrollable Full Self-Introduction on Hover -->
+                    <div class="flex-1 min-h-0 overflow-y-auto pr-1.5 text-xs text-[#cfc8b8] font-serif-jp leading-[1.85] bg-[#08070b]/60 p-2.5 border border-[#b8a378]/15">
+                      ${storyParagraphsHtml}
+                    </div>
+                  </div>
+
+                  <!-- Bottom Action Bar inside Hovered Card -->
+                  <div class="pt-3 mt-2.5 border-t border-[#b8a378]/20 flex items-center justify-between gap-2 shrink-0">
+                    ${isUsingEmptyDemo ? `
+                      <span class="text-[11px] text-[#9e9689] font-serif-jp">✦ カーソル移動で隣のキャストへ展開</span>
+                    ` : `
+                      <button type="button" data-open-cast="${escapeHtml(c.id)}"
+                              class="flex-1 py-1.5 px-3 bg-[#b8a378]/15 hover:bg-[#b8a378] text-[#d6c6a5] hover:text-[#08070a] border border-[#b8a378]/45 text-xs font-serif-jp font-semibold transition flex items-center justify-center gap-1.5">
+                        <span>拡大プロフィール・横写真を開く</span>
+                        <span>↗</span>
+                      </button>
+                    `}
+                    ${editBtnHtml}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating High-Contrast Nameplate Pill Below Hovered Item (Matches yellow HARNESS TEE label in video) -->
+              <div class="rack-bottom-nameplate absolute bottom-0 left-1/2 z-30 whitespace-nowrap">
+                <div class="px-4 py-1 bg-[#d6c6a5] text-[#08070a] font-serif-jp text-xs font-bold tracking-wider shadow-[0_6px_22px_rgba(214,198,165,0.5)] border border-[#ede5d5] flex items-center gap-2">
+                  <span class="font-display text-[10px] font-bold">No.${noPad}</span>
+                  <span>${escapeHtml(c.name)}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        const fCountAll = sourceList.length;
+        const fCountA = sourceList.filter(c => c.factionId === "faction_a").length;
+        const fCountB = sourceList.filter(c => c.factionId === "faction_b").length;
+        const fCountC = sourceList.filter(c => c.factionId === "faction_c").length;
+
+        container.innerHTML = `
+          ${demoNoticeHtml}
+
+          <!-- Interactive Horizontal Cast Rack Stage (Inspired by Reference Video) -->
+          <div id="castRackStage" class="cast-rack-stage-bg relative border border-[#b8a378]/40 pt-7 pb-8 px-2 sm:px-6 overflow-hidden">
+
+            <!-- Large Subtle Background Watermark Typography (like 'man / clothing' in reference video) -->
+            <div class="pointer-events-none absolute inset-x-0 top-6 flex flex-col items-center justify-center select-none z-0 opacity-20">
+              <div class="font-display text-xs sm:text-sm tracking-[0.45em] text-[#b8a378] uppercase">RIVELLIA SALON</div>
+              <div class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#d6c6a5]/60 lowercase leading-none mt-1">
+                ${escapeHtml(bgWatermarkTitle)}
+              </div>
+            </div>
+
+            <!-- Top Rack Controls Bar: Instructions + Left/Right Scroll + Quick Scrubber -->
+            <div class="relative z-20 max-w-6xl mx-auto mb-4 px-2 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-2 text-xs text-[#d6c6a5] font-serif-jp">
+                <span class="inline-block w-2 h-2 rounded-full bg-[#d6c6a5] animate-pulse"></span>
+                <span>キャストに<strong>カーソルを合わせるとプロフィールが展開</strong>します（横スクロールで全${totalItems}名を確認可能）</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" id="rackScrollLeftBtn" class="px-3 py-1.5 bg-[#14121d] hover:bg-[#b8a378] text-[#d6c6a5] hover:text-[#08070a] border border-[#b8a378]/45 text-xs font-serif-jp font-semibold transition">
+                  ◀ 左へ移動
+                </button>
+                <input id="rackScrollRangeInput" type="range" min="0" max="100" value="0" aria-label="キャスト横スクロール位置" class="w-28 sm:w-40 accent-[#d6c6a5] cursor-pointer">
+                <button type="button" id="rackScrollRightBtn" class="px-3 py-1.5 bg-[#14121d] hover:bg-[#b8a378] text-[#d6c6a5] hover:text-[#08070a] border border-[#b8a378]/45 text-xs font-serif-jp font-semibold transition">
+                  右へ移動 ▶
+                </button>
+              </div>
+            </div>
+
+            <!-- Metallic Gallery Rack Frame (Top Bar + Left/Right Vertical Pillars + Conical Bases) -->
+            <div class="relative z-10 max-w-[1320px] mx-auto">
+              <!-- Top Horizontal Metallic Rail Bar -->
+              <div class="mx-3 sm:mx-6 h-[7px] rounded-t-full bg-gradient-to-r from-[#5a4e36] via-[#ede5d5] to-[#5a4e36] shadow-[0_4px_20px_rgba(214,198,165,0.45)] relative z-20"></div>
+
+              <!-- Left & Right Rack Vertical Side Pillars (Desktop decorative frame like video) -->
+              <div class="hidden sm:block pointer-events-none absolute top-[4px] bottom-6 left-3 w-[5px] bg-gradient-to-b from-[#d6c6a5] via-[#8c7853]/70 to-[#5a4e36] z-20"></div>
+              <div class="hidden sm:block pointer-events-none absolute bottom-2 left-0.5 w-6 h-7 rounded-t-full bg-gradient-to-b from-[#d6c6a5] to-[#3d3422] shadow-lg z-20"></div>
+
+              <div class="hidden sm:block pointer-events-none absolute top-[4px] bottom-6 right-3 w-[5px] bg-gradient-to-b from-[#d6c6a5] via-[#8c7853]/70 to-[#5a4e36] z-20"></div>
+              <div class="hidden sm:block pointer-events-none absolute bottom-2 right-0.5 w-6 h-7 rounded-t-full bg-gradient-to-b from-[#d6c6a5] to-[#3d3422] shadow-lg z-20"></div>
+
+              <!-- Horizontal Scrollable Cast Hangers Track (All Registered Casts in One Row!) -->
+              <div id="castRackScrollViewport" class="overflow-x-auto overflow-y-hidden px-4 sm:px-10 pb-4 pt-0">
+                <div id="castRackItemsTrack" class="inline-flex items-start gap-2.5 sm:gap-3.5 min-w-full">
+                  ${rackItemsHtml}
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Dock Switcher (Matches 'Store | Man | Woman' bar at bottom of reference video) -->
+            <div class="relative z-20 mt-5 flex justify-center">
+              <div class="inline-flex flex-wrap items-center bg-[#060509]/95 border border-[#b8a378]/50 p-1 shadow-[0_12px_30px_rgba(0,0,0,0.9)]">
+                <button type="button" data-rack-faction="ALL"
+                        class="rack-bottom-faction-btn px-4 py-1.5 text-xs font-serif-jp font-bold transition ${state.selectedFaction === "ALL" ? "bg-[#d6c6a5] text-[#08070a]" : "text-[#dfd9cc] hover:text-[#d6c6a5]"}">
+                  すべて (${fCountAll})
+                </button>
+                <button type="button" data-rack-faction="faction_a"
+                        class="rack-bottom-faction-btn px-4 py-1.5 text-xs font-serif-jp font-bold transition ${state.selectedFaction === "faction_a" ? "bg-[#e2a8b8] text-[#08070a]" : "text-[#e2a8b8] hover:bg-[#e2a8b8]/15"}">
+                  魔法少女 (${fCountA})
+                </button>
+                <button type="button" data-rack-faction="faction_b"
+                        class="rack-bottom-faction-btn px-4 py-1.5 text-xs font-serif-jp font-bold transition ${state.selectedFaction === "faction_b" ? "bg-[#b86b77] text-[#08070a]" : "text-[#b86b77] hover:bg-[#b86b77]/15"}">
+                  悪 (${fCountB})
+                </button>
+                <button type="button" data-rack-faction="faction_c"
+                        class="rack-bottom-faction-btn px-4 py-1.5 text-xs font-serif-jp font-bold transition ${state.selectedFaction === "faction_c" ? "bg-[#8da4b8] text-[#08070a]" : "text-[#8da4b8] hover:bg-[#8da4b8]/15"}">
+                  中立 (${fCountC})
+                </button>
+              </div>
+            </div>
+
+          </div>
+        `;
+
+        // Bind Empty Demo Register Button if present
+        const empBtn = document.getElementById("emptyStateRegisterCastBtn");
+        if (empBtn) {
+          empBtn.addEventListener("click", () => {
+            state.editingCastId = "NEW";
+            openAdminModal("tab-add-cast");
+            loadCastIntoEditor("NEW");
+          });
+        }
+
+        // Bind Hover-to-Expand on each cast rack item
+        const viewportEl = document.getElementById("castRackScrollViewport");
+        const rangeInput = document.getElementById("rackScrollRangeInput");
+        const rackItems = container.querySelectorAll(".cast-rack-item");
+
+        const setHoveredRackItem = (castId) => {
+          state.rackHoveredCastId = castId;
+          rackItems.forEach(item => {
+            const isTarget = item.getAttribute("data-rack-cast-id") === castId;
+            item.classList.toggle("is-rack-hovered", isTarget);
+          });
+        };
+
+        rackItems.forEach(item => {
+          const cid = item.getAttribute("data-rack-cast-id");
+          item.addEventListener("pointerenter", (e) => {
+            if (e.pointerType === "touch") return;
+            setHoveredRackItem(cid);
+          });
+          item.addEventListener("click", (e) => {
+            if (e.target.closest("button") || e.target.closest("a")) return;
+            if (!item.classList.contains("is-rack-hovered")) {
+              setHoveredRackItem(cid);
+              item.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+            } else if (!isUsingEmptyDemo) {
+              openCastModal(cid);
+            }
+          });
+        });
+
+        // Bind Left / Right Scroll Buttons & Scrubber Range Bar
+        const syncRangeFromScroll = () => {
+          if (!viewportEl || !rangeInput) return;
+          const maxScroll = Math.max(1, viewportEl.scrollWidth - viewportEl.clientWidth);
+          rangeInput.value = String(Math.round((viewportEl.scrollLeft / maxScroll) * 100));
+        };
+
+        if (viewportEl) {
+          viewportEl.addEventListener("scroll", syncRangeFromScroll, { passive: true });
+        }
+
+        if (rangeInput && viewportEl) {
+          rangeInput.addEventListener("input", (e) => {
+            const pct = Number(e.target.value) / 100;
+            const maxScroll = Math.max(0, viewportEl.scrollWidth - viewportEl.clientWidth);
+            viewportEl.scrollLeft = pct * maxScroll;
+          });
+        }
+
+        const leftBtn = document.getElementById("rackScrollLeftBtn");
+        const rightBtn = document.getElementById("rackScrollRightBtn");
+        if (leftBtn && viewportEl) {
+          leftBtn.addEventListener("click", () => {
+            viewportEl.scrollBy({ left: -380, behavior: "smooth" });
+          });
+        }
+        if (rightBtn && viewportEl) {
+          rightBtn.addEventListener("click", () => {
+            viewportEl.scrollBy({ left: 380, behavior: "smooth" });
+          });
+        }
+
+        // Bind Bottom Faction Switcher Dock
+        container.querySelectorAll(".rack-bottom-faction-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            state.selectedFaction = btn.getAttribute("data-rack-faction") || "ALL";
+            state.currentPage = 1;
+            renderCategoryBanner();
+            renderCastFilterTabs();
+            renderCasts();
+          });
+        });
+
+        // Bind X Links, Open Modal Buttons, and Admin Edit Buttons inside Rack Cards
+        container.querySelectorAll(".cast-x-icon-link").forEach(link => {
+          link.addEventListener("click", (e) => e.stopPropagation());
+        });
+        container.querySelectorAll("[data-open-cast]").forEach(el => {
+          el.addEventListener("click", (e) => {
+            e.stopPropagation();
+            openCastModal(el.getAttribute("data-open-cast"));
+          });
+        });
+        container.querySelectorAll(".card-edit-cast-btn").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            openCastEditorFor(btn.getAttribute("data-edit-cast"));
+          });
+        });
+
+        return;
+      }
+
+      if (state.casts.length === 0) {
+        container.className = "grid grid-cols-1 gap-6";
+        container.innerHTML = `
+          <div class="card-nocturne rounded-3xl p-10 sm:p-14 text-center space-y-4">
+            <p class="font-serif-jp text-lg sm:text-xl text-[#d6c6a5]">現在登録されているキャストはいません</p>
+            <p class="text-xs sm:text-sm text-[#9e9689]">管理者ログイン後、管理画面からキャスト（キャスト名・カテゴリー・演者名・Xリンク・一言セリフ・画像・自己紹介文）を新規登録できます。</p>
+            <div class="pt-2">
+              <button id="emptyStateRegisterCastBtn" type="button" class="px-6 py-3 rounded-xl bg-gradient-to-r from-[#8c7853] via-[#b8a378] to-[#8c7853] text-[#0b0a0e] font-bold text-xs sm:text-sm hover:brightness-110 transition shadow-lg">
+                ${state.isAdminAuthenticated ? "＋ 新規キャストを登録する" : "🔒 管理者ログインしてキャストを登録する"}
+              </button>
+            </div>
+          </div>
+        `;
+        const empBtn = document.getElementById("emptyStateRegisterCastBtn");
+        if (empBtn) {
+          empBtn.addEventListener("click", () => {
+            state.editingCastId = "NEW";
+            openAdminModal("tab-add-cast");
+            loadCastIntoEditor("NEW");
+          });
+        }
+        return;
+      }
+
+      const startIdx = (state.currentPage - 1) * state.pageSize;
+      const pagedCasts = filtered.slice(startIdx, startIdx + state.pageSize);
+
       if (state.viewMode === "grid") {
         container.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7";
         container.innerHTML = pagedCasts.map(c => {
@@ -4101,7 +4661,6 @@
                      style="border-top: 2px solid ${escapeHtml(f.color)};"
                      data-open-cast="${escapeHtml(c.id)}">
               <div class="space-y-4">
-                <!-- Top Brass Folio Header: Entry No + Faction Badge + Actor + X Icon -->
                 <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#b8a378]/20">
                   <div class="flex items-center gap-2">
                     <span class="font-display text-xs tracking-widest font-bold px-2.5 py-0.5 bg-[#17141f] text-[#d6c6a5] border border-[#b8a378]/40">
@@ -4122,24 +4681,21 @@
 
                 ${imgBlockHtml}
 
-                <!-- Character Name -->
                 <div>
-                  <span class="block font-display text-[9px] tracking-[0.28em] text-[#b8a378]/80 uppercase">SALON CAST PORTFOLIO</span>
-                  <h3 class="font-serif-jp text-xl sm:text-2xl font-bold text-[#ede5d5] group-hover:text-[#d6c6a5] transition leading-snug mt-0.5 tracking-wide">
+                  <span class="block font-display text-[9px] tracking-[0.28em] text-[#b8a378]/80 uppercase">SALON CAST PROFILE</span>
+                  <h3 class="font-serif-jp text-xl sm:text-2xl font-bold text-[#ede5d5] group-hover:text-[#d6c6a5] transition mt-1 tracking-wide">
                     ${escapeHtml(c.name)}
                   </h3>
                 </div>
 
-                <!-- Signature Quote -->
-                <blockquote class="p-4 bg-[#09080c]/95 border-l-2 border-[#b8a378] font-serif-jp text-xs sm:text-sm text-[#e6e0d4] leading-relaxed line-clamp-3">
+                <blockquote class="p-4 bg-[#09080c]/95 border-l-2 border-[#b8a378] font-serif-jp text-xs sm:text-sm text-[#e6e0d4] leading-relaxed">
                   ${escapeHtml(c.quote)}
                 </blockquote>
               </div>
 
-              <!-- Card Footer CTA -->
               <div class="pt-5 mt-5 border-t border-[#b8a378]/20 flex items-center gap-2">
                 <button type="button" data-open-cast="${escapeHtml(c.id)}"
-                        class="flex-1 py-2.5 px-4 bg-[#b8a378]/12 group-hover:bg-[#b8a378] text-[#d6c6a5] group-hover:text-[#0b0a0e] border border-[#b8a378]/45 font-serif-jp font-semibold text-xs sm:text-sm tracking-wider transition flex items-center justify-center gap-2">
+                        class="flex-1 py-2.5 px-4 bg-[#b8a378]/12 group-hover:bg-[#b8a378] text-[#d6c6a5] group-hover:text-[#09080c] border border-[#b8a378]/45 text-xs font-serif-jp font-semibold tracking-wider transition flex items-center justify-center gap-2">
                   <span>自己紹介文を紐解く</span>
                   <span>→</span>
                 </button>
@@ -4153,12 +4709,12 @@
         container.innerHTML = pagedCasts.map(c => {
           const f = state.config.factions[c.factionId] || state.config.factions.faction_c;
           const editBtnHtml = state.isAdminAuthenticated
-            ? `<button type="button" data-edit-cast="${escapeHtml(c.id)}" class="card-edit-cast-btn px-3.5 py-1.5 rounded-xl bg-[#b8a378] text-[#0b0a0e] text-xs font-bold">✎ 編集する</button>`
+            ? `<button type="button" data-edit-cast="${escapeHtml(c.id)}" class="card-edit-cast-btn px-3.5 py-1.5 rounded-xl bg-[#b8a378] text-[#0b0a0e] text-xs font-bold hover:brightness-110 transition">✎ 編集する</button>`
             : "";
           const xIconHtml = buildXIconLinkHtml(c.xUrl);
           const listHeroImg = c.detailImage || c.image || "";
           const listImgHtml = listHeroImg
-            ? `<div class="my-4"><img src="${escapeHtml(listHeroImg)}" alt="${escapeHtml(c.name)}" class="max-h-96 w-auto max-w-full rounded-2xl border border-[#b8a378]/40 object-cover shadow-xl"></div>`
+            ? `<div class="my-4"><img src="${escapeHtml(listHeroImg)}" alt="${escapeHtml(c.name)}" class="max-h-96 w-auto max-w-full rounded-2xl border border-[#b8a378]/40 shadow-lg"></div>`
             : "";
           return `
             <article class="card-nocturne rounded-3xl p-6 sm:p-9 border border-[#b8a378]/35 space-y-6">
@@ -4178,7 +4734,7 @@
                 </div>
                 <div class="flex items-center gap-2">
                   ${editBtnHtml}
-                  <button type="button" data-open-cast="${escapeHtml(c.id)}" class="text-xs text-[#d6c6a5] underline hover:text-[#ede5d5]">
+                  <button type="button" data-open-cast="${escapeHtml(c.id)}" class="text-xs text-[#d6c6a5] underline hover:text-[#e6e0d4]">
                     モーダルで開く ↗
                   </button>
                 </div>
@@ -4191,7 +4747,7 @@
                 ${listImgHtml}
               </div>
 
-              <blockquote class="p-4 rounded-2xl bg-[#0c0b10] border-l-2 border-[#b8a378] font-serif-jp text-sm text-[#e6e0d4] leading-relaxed">
+              <blockquote class="p-4 rounded-2xl bg-[#0c0b10] border-l-2 border-[#b8a378] font-serif-jp text-sm text-[#e6e0d4]">
                 ${escapeHtml(c.quote)}
               </blockquote>
 
@@ -6311,18 +6867,21 @@
         renderCasts();
       });
 
+      const viewRackBtn = document.getElementById("viewRackBtn");
       const viewGridBtn = document.getElementById("viewGridBtn");
       const viewListBtn = document.getElementById("viewListBtn");
+      if (viewRackBtn) {
+        viewRackBtn.addEventListener("click", () => {
+          state.viewMode = "rack";
+          renderCasts();
+        });
+      }
       viewGridBtn.addEventListener("click", () => {
         state.viewMode = "grid";
-        viewGridBtn.className = "px-3 py-1 rounded-lg text-xs font-medium bg-[#b8a378]/25 text-[#d6c6a5]";
-        viewListBtn.className = "px-3 py-1 rounded-lg text-xs font-medium text-[#b0a898] hover:text-[#e6e0d4]";
         renderCasts();
       });
       viewListBtn.addEventListener("click", () => {
         state.viewMode = "list";
-        viewListBtn.className = "px-3 py-1 rounded-lg text-xs font-medium bg-[#b8a378]/25 text-[#d6c6a5]";
-        viewGridBtn.className = "px-3 py-1 rounded-lg text-xs font-medium text-[#b0a898] hover:text-[#e6e0d4]";
         renderCasts();
       });
 
