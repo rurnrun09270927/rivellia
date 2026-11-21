@@ -1,4 +1,4 @@
-window.RIVELLIA_SPLIT_VERSION = 1795233244303;
+window.RIVELLIA_SPLIT_VERSION = 1795233359513;
 window.RIVELLIA_REPORTS_DATA = [
   {
     "id": "2026-11-20-report-28380",
@@ -7,6 +7,7 @@ window.RIVELLIA_REPORTS_DATA = [
     "category": "営業記録",
     "markdownSource": "content/reports/2026-11-20-report-28380.md",
     "casts": [
+      "ルル",
       "ジャバウォック",
       "リアン",
       "リンドウ",
